@@ -1,0 +1,259 @@
+<? php
+/ **
+ * Créé par PhpStorm.
+ * Utilisateur: Johan.VOLAND
+ * Date: 30.04.2018
+ * Heure: 09:33
+ * /
+? >
+<! DOCTYPE html>
+< html >
+< title > Modèle W3.CSS </ title >
+< meta  charset = " UTF-8 " >
+< meta  name = " viewport "  content = " largeur = largeur du périphérique, échelle initiale = 1 " >
+< link  rel = " stylesheet "  href = " https://www.w3schools.com/w3css/4/w3.css " >
+< link  rel = " stylesheet "  href = " https://fonts.googleapis.com/css?family=Roboto " >
+< link  rel = " stylesheet "  href = " https://fonts.googleapis.com/css?family=Montserrat " >
+< link  rel = " stylesheet "  href = " https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css " >
+< style >
+    .w3-sidebar  a { font-famille : " Roboto " , sans-serif }
+    corps , h1 , h2 , h3 , h4 , h5 , h6 , .w3 dans l'ensemble { font-family : " Montserrat " , sans-serif ;}
+< / style >
+< body  class = " w3-content "  style = " max-largeur: 1200px " >
+
+<! - Barre latérale / menu ->
+< nav  class = " w3-barre latérale w3-barre-bloc w3-blanc w3-effondrement w3-top "  style = " z-index: 3; largeur: 250px "  id = " mySidebar " >
+    < div  class = " w3-conteneur w3-conteneur-affichage w3-padding-16 " >
+        < i  onclick = " w3_close () "  class = " fa-supprimer w3-cacher-grand w3-bouton w3-afficher-topright " > </ i >
+        < h3  class = " w3-wide " > < b > LOGO </ b > </ h3 >
+    </ div >
+    < div  class = " w3-remplissage-64 w3-grand w3-texte-gris "  style = " police-poids: gras " >
+        < A  href = " # "  class = " w3-bouton w3-bar-item " > Chemises </ a >
+        < A  href = " # "  class = " w3-bar-élément w3-bouton " > Robes </ a >
+        < A  onclick = " myAccFunc () "  href = " javascript: void (0) "  class = " w3-button w3-bloc w3 blanc w3-gauche-align "  id = " myBtn " >
+            Les jeans < i  class = " fa-caret-down " > </ i >
+        </ a >
+        < div  id = " demoAcc "  class = " w3-bloc-barre w3-cache w3-padding-grand w3-moyen " >
+            < A  href = " # "  class = " w3-bar-élément w3-bouton w3-gris clair " > < i  class = " fa fa-caret droite w3-margin-right " > </ i > Skinny </ a >
+            < A  href = " # "  class = " w3-bar-élément w3 bouton " > Détendu </ a >
+            < A  href = " # "  class = " w3-bar-élément w3-bouton " > bootcut </ a >
+            < A  href = " # "  class = " w3-bouton w3-bar-item " > Droit </ a >
+        </ div >
+        < A  href = " # "  class = " w3-bar-élément w3-bouton " > Vestes </ a >
+        < A  href = " # "  class = " w3-bar-élément w3-bouton " > Gymwear </ a >
+        < A  href = " # "  class = " w3-bar-élément w3-bouton " > Blazers </ a >
+        < A  href = " # "  class = " w3-bar-élément w3-bouton " > Chaussures </ a >
+    </ div >
+    < A  href = " #footer "  class = " w3-bar-élément w3-padding w3 bouton " > Contact </ a >
+    < A  href = " javascript: void (0) "  class = " w3-bar-article w3-padding w3-button "  onclick = "document.getElementById ( 'du bulletin') 'bloc' style.display = " > Bulletin < / a >
+    < A  href = " #footer "   class = " w3-bar-élément w3-padding w3 bouton " > Inscription </ a >
+</ nav >
+
+<! - Menu principal sur les petits écrans ->
+< header  class = " w3-bar w3-haut w3-cache-grand w3-noir w3-xlarge " >
+    < div  class = " w3-bar-élément w3-padding-24 w3-wide " > LOGO </ div >
+    < A  href = " javascript: void (0) "  class = " w3-bar-article w3-button w3-padding-24 w3-droite "  onclick = " w3_open () " > < i  class = " fa fa-barres " > </ i > </ a >
+</ header >
+
+<! - Effet de superposition lors de l'ouverture de la barre latérale sur les petits écrans ->
+< div  class = " w3-overlay w3-cache-large "  onclick = " w3_close () "  style = " curseur: pointeur "  title = " menu latéral "  id = " myOverlay " > </ div >
+
+<! - ! CONTENU DE LA PAGE! ->
+< div  class = " w3-main "  style = " marge-gauche: 250px " >
+
+    <! - Déplacer le contenu sur les petits écrans ->
+    < div  class = " w3-hide-large "  style = " margin-top: 83px " > </ div >
+
+    <! - En -tête supérieur ->
+    < header  class = " w3-conteneur w3-xlarge " >
+        < p  class = " w3-left " > Jeans </ p >
+        < p  class = " w3-right " >
+            < i  class = " fa fa-shopping-panier w3-marge-droite " > </ i >
+            < i  class = " fa fa-recherche " > </ i >
+        </ p >
+    </ header >
+
+    <! - En- tête d'image ->
+    < div  class = " w3-conteneur-affichage w3-conteneur " >
+        < img  src = " /w3images/jeans.jpg "  alt = " Jeans "  style = " largeur: 100% " >
+        < div  class = " w3-affichage-topleft w3-texte-blanc "  style = " remplissage: 24px 48px " >
+            < h1  class = " w3-jumbo w3-hide-small " > Nouveautés </ h1 >
+            < h1  class = " w3-cache-large w3-cache-medium " > Nouveautés </ h1 >
+            < h1  class = " w3-hide-small " > COLLECTION 2016 </ h1 >
+            < P > < a  href = " #jeans "  class = " w3 bouton w3 noir w3-padding-grand-grand w3 " > MAGASINER </ a > </ p >
+        </ div >
+    </ div >
+
+    < div  class = " w3-conteneur w3-texte-gris "  id = " jeans " >
+        < p > 8 articles </ p >
+    </ div >
+
+    <! - Grille de produit ->
+    < div  class = " w3-row w3-grayscale " >
+        < div  class = " w3-col l3 s6 " >
+            < div  class = " w3-container " >
+                < img  src = " /w3images/jeans1.jpg "  style = " largeur: 100% " >
+                < p > Jean skinny déchiré <br> < b > $ 24.99 </ b > </ p >
+            </ div >
+            < div  class = " w3-container " >
+                < img  src = " /w3images/jeans2.jpg "  style = " largeur: 100% " >
+                < p > Mega Ripped Jeans <br> < b > 19,99 $ </ b > </ p >
+            </ div >
+        </ div >
+
+        < div  class = " w3-col l3 s6 " >
+            < div  class = " w3-container " >
+                < div  class = " w3-display-container " >
+                    < img  src = " /w3images/jeans2.jpg "  style = " largeur: 100% " >
+                    < span  class = " w3-tag w3-affichage-topleft " > Nouveau </ span >
+                    < div  class = " w3-affichage-milieu w3-affichage-hover " >
+                        < button  class = " w3-button w3-black " > Acheter maintenant < i  class = " fa-shopping-cart " > </ i > </ button >
+                    </ div >
+                </ div >
+                < p > Mega Ripped Jeans <br> < b > 19,99 $ </ b > </ p >
+            </ div >
+            < div  class = " w3-container " >
+                < img  src = " /w3images/jeans3.jpg "  style = " largeur: 100% " >
+                < p > Jean skinny délavé <br> < b > 20,50 $ </ b > </ p >
+            </ div >
+        </ div >
+
+        < div  class = " w3-col l3 s6 " >
+            < div  class = " w3-container " >
+                < img  src = " /w3images/jeans3.jpg "  style = " largeur: 100% " >
+                < p > Jean skinny délavé <br> < b > 20,50 $ </ b > </ p >
+            </ div >
+            < div  class = " w3-container " >
+                < div  class = " w3-display-container " >
+                    < img  src = " /w3images/jeans4.jpg "  style = " largeur: 100% " >
+                    < span  class = " w3-tag w3-display-topleft " > Vente </ span >
+                    < div  class = " w3-affichage-milieu w3-affichage-hover " >
+                        < button  class = " w3-button w3-black " > Acheter maintenant < i  class = " fa-shopping-cart " > </ i > </ button >
+                    </ div >
+                </ div >
+                < p > Vintage Skinny Jeans <br> < b  class = " w3-text-red " > 14,99 $ </ b > </ p >
+            </ div >
+        </ div >
+
+        < div  class = " w3-col l3 s6 " >
+            < div  class = " w3-container " >
+                < img  src = " /w3images/jeans4.jpg "  style = " largeur: 100% " >
+                < p > Vintage Skinny Jeans <br> < b > 14,99 $ </ b > </ p >
+            </ div >
+            < div  class = " w3-container " >
+                < img  src = " /w3images/jeans1.jpg "  style = " largeur: 100% " >
+                < p > Jean skinny déchiré <br> < b > $ 24.99 </ b > </ p >
+            </ div >
+        </ div >
+    </ div >
+
+    <! - Souscrire une section ->
+    < div  class = " w3-conteneur w3-noir w3-padding-32 " >
+        < h1 > Abonnez-vous </ h1 >
+        < p > Pour obtenir des offres spéciales et un traitement VIP: </ p >
+        < p > < input  class = " w3-input w3-border "  type = " text "  placeholder = " Entrez un e-mail "  style = " width: 100% " > </ p >
+        < bouton  type = " bouton "  class = " w3-bouton w3-rouge w3-marge-bas " > S'abonner </ button >
+    </ div >
+
+    <! - Pied de page ->
+    < footer  class = " w3-padding-64 w3-lumière-grise w3-petite w3-center "  id = " footer " >
+        < div  class = " w3-row-padding " >
+            < div  class = " w3-col s4 " >
+                < h4 > Contact </ h4 >
+                < p > Des questions? Allez-y. </ P >
+                < form  action = " /action_page.php "  target = " _blank " >
+                    < p > < input  class = " w3-entrée w3-frontière "  type = " texte "  placeholder = " Nom "  name = " Nom "  requis > </ p >
+                    < p > < input  class = " w3-entrée w3-border "  type = " texte "  placeholder = " Email "  nom = " Email "  requis > </ p >
+                    < p > < input  class = " w3-entrée w3-frontière "  type = " texte "  placeholder = " Sujet "  nom = " Sujet "  requis > </ p >
+                    < p > < input  class = " w3-entrée w3-frontière "  type = " texte "  placeholder = " Message "  nom = " Message "  requis > </ p >
+                    < button  type = " submit "  class = " w3-bouton w3-block w3-noir " > Envoyer </ button >
+                </ form >
+            </ div >
+
+            < div  class = " w3-col s4 " >
+                < h4 > À propos de </ h4 >
+                < P > < a  href = " # " > Qui sommes - nous </ a > </ p >
+                < P > < a  href = " # " > Nous recrutons </ a > </ p >
+                < P > < a  href = " # " > Support </ a > </ p >
+                < P > < a  href = " # " > Trouver un magasin </ a > </ p >
+                < P > < a  href = " # " > Expédition </ a > </ p >
+                < P > < a  href = " # " > Paiement </ a > </ p >
+                < P > < a  href = " # " > Carte cadeau </ a > </ p >
+                < P > < a  href = " # " > Retour </ a > </ p >
+                < P > < a  href = " # " > Aide </ a > </ p >
+            </ div >
+
+            < div  class = " w3-col s4 w3-justifier " >
+                < h4 > Magasin </ h4 >
+                < p > < i  class = " fa fa-fw fa-carte-marqueur " > </ i > Nom de l'entreprise </ p >
+                < p > < i  class = " fa fa-fw fa-téléphone " > </ i > 0044123123 </ p >
+                < p > < i  class = " fa fa-fw fa-enveloppe " > </ i > ex@mail.com </ p >
+                < h4 > Nous acceptons </ h4 >
+                < p > < i  class = " fa fa-fw fa-cc-amex " > </ i > Amex </ p >
+                < p > < i  class = " fa fa-fa carte de crédit " > </ i > carte de crédit </ p >
+                < Br >
+                < i  class = " fa-facebook-officiel w3-hover-opacité w3-large " > </ i >
+                < i  class = " fa-instagram w3-hover-opacité w3-large " > </ i >
+                < i  class = " fa-snapchat w3-hover-opacité w3-large " > </ i >
+                < i  class = " fa-pinterest-p w3-hover-opacité w3-large " > </ i >
+                < i  class = " fa-twitter w3-hover-opacité w3-large " > </ i >
+                < i  class = " fa-linkedin w3-hover-opacité w3-large " > </ i >
+            </ div >
+        </ div >
+    </ footer >
+
+    < div  class = " w3-noir w3-centre w3-padding-24 " > Propulsé par < a  href = " https://www.w3schools.com/w3css/default.asp "  title = " W3.CSS "  target = " _blank "  class = " w3-hover-opacité " > w3.css </ a > </ div >
+
+    <! - Fin du contenu de la page ->
+</ div >
+
+<! - Bulletin Modal ->
+< div  id = " newsletter "  class = " w3-modal " >
+    < div  class = " w3-modal-contenu w3-animate-zoom "  style = " remplissage: 32px " >
+        < div  class = " w3-conteneur w3-blanc w3-centre " >
+            < i  onclick = " document.getElementById ('newsletter'). style.display = 'aucun' "  class = " fa-supprimer w3-droit w3-bouton w3-transparent w3-xxlarge " > </ i >
+            < h2  class = " w3-wide " > NEWSLETTER </ h2 >
+            < p > Rejoignez notre liste de diffusion pour recevoir des mises à jour sur les nouveaux arrivants et les offres spéciales. </ p >
+            < p > < input  class = " w3-entrée w3-border "  type = " texte "  placeholder = " Entrez un e-mail " > </ p >
+            < button  type = " button "  class = " w3-bouton w3-padding-grand w3-rouge w3-marge-bas "  onclick = " document.getElementById ('newsletter'). style.display = 'aucun' " > S'abonner < / bouton >
+        </ div >
+    </ div >
+</ div >
+
+< script >
+    // Accordéon
+    function  myAccFunc () {
+        var x =  document . getElementById ( " demoAcc " );
+        if ( x . className . indexOf ( " w3-show " ) ==  - 1 ) {
+            x . className  + =  " w3-show " ;
+        } else {
+            x . className  =  x . className . replace ( " w3-show " , " " );
+        }
+    }
+    // Cliquez sur le lien "Jeans" au chargement de la page pour ouvrir l'accordéon à des fins de démonstration
+    document . getElementById ( " myBtn " ). cliquez sur ();
+    // Script pour ouvrir et fermer la barre latérale
+    Fonction  w3_open () {
+        document . getElementById ( " mySidebar " ). style . display  =  " bloquer " ;
+        document . getElementById ( " myOverlay " ). style . display  =  " bloquer " ;
+    }
+    Fonction  w3_close () {
+        document . getElementById ( " mySidebar " ). style . display  =  " aucun " ;
+        document . getElementById ( " myOverlay " ). style . display  =  " aucun " ;
+    }
+< / script >
+
+</ body >
+</ html >
+© 2018 GitHub , Inc.
+termes
+Intimité
+Sécurité
+Statut
+Aidez-moi
+Contactez GitHub
+API
+Entraînement
+Boutique
+Blog
+Sur
