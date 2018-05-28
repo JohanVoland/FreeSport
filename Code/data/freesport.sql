@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 07 Mai 2018 à 12:40
+-- Généré le :  Lun 28 Mai 2018 à 08:25
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -32,7 +32,6 @@ CREATE TABLE `article` (
   `prix` int(11) DEFAULT NULL,
   `disponibilite` int(11) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
-  `description` varchar(100) NOT NULL,
   `idType` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
   `idSexe` int(11) NOT NULL
@@ -55,7 +54,7 @@ CREATE TABLE `categorie` (
 
 INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
 (1, 'utilisateur'),
-(2, 'resp_ventes'),
+(2, 'responsable des ventes'),
 (3, 'administrateur');
 
 -- --------------------------------------------------------
@@ -67,21 +66,20 @@ INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
 CREATE TABLE `commande` (
   `idCommande` int(11) NOT NULL,
   `date` date DEFAULT NULL,
-  `idUtilisateur` int(11) NOT NULL,
-  `idPanier` int(11) NOT NULL
+  `idUtilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `panier`
+-- Structure de la table `lignedecommande`
 --
 
-CREATE TABLE `panier` (
-  `idPanier` int(11) NOT NULL,
-  `quantite` int(11) DEFAULT NULL,
-  `idUtilisateur` int(11) NOT NULL,
-  `idArticle` int(11) NOT NULL
+CREATE TABLE `lignedecommande` (
+  `commande_idCommande` int(11) NOT NULL,
+  `commande_idUtilisateur` int(11) NOT NULL,
+  `article_idArticle` int(11) NOT NULL,
+  `quantite` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -140,13 +138,10 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`idType`, `nom`) VALUES
-(1, 't-shirt'),
-(2, 'pull'),
-(3, 'veste'),
-(4, 'short'),
-(5, 'training'),
-(6, 'basket'),
-(7, 'autre');
+(1, 'T-shirt'),
+(2, 'Veste'),
+(3, 'Chaussure'),
+(4, 'Training');
 
 -- --------------------------------------------------------
 
@@ -172,10 +167,9 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password`, `email`, `rue`, `npa`, `idCategorie`, `ville`) VALUES
-(5, 'Johan', 'Voland', 'Johan', 1234, 'johan.voland@cpnv.ch', 'Champ Derrey 4', 1083, 1, 'Mézières'),
-(6, 'Catarina', 'De Jesus', 'Catarina', 1234, 'catarina.de-jesus@cpnv.ch', 'Champ Derrey 4', 1083, 1, 'Yvonnant'),
-(7, 'Admin', '*', '*', 1234, 'admin@cpnv.ch', '*', 123, 3, '*'),
-(8, 'Resp_ventes', 'Smith', 'Jonn', 1234, 'jonn.smith@cpnv.ch', 'Champ Derrey 4', 1083, 2, 'Mézières');
+(1, 'administrateur', '-', '-', 1234, '-', '-', 0, 3, '-'),
+(2, 'responsable des ventes', '-', '-', 1234, '-', '-', 0, 2, '-'),
+(3, 'user1', 'Smith', 'Johnn', 1234, 'JohnnSmith@gmail.com', 'rue du pif', 123, 1, 'Ville-random');
 
 --
 -- Index pour les tables exportées
@@ -200,17 +194,16 @@ ALTER TABLE `categorie`
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`idCommande`,`idUtilisateur`,`idPanier`),
-  ADD KEY `fk_commande_utilisateur1_idx` (`idUtilisateur`),
-  ADD KEY `fk_commande_panier1_idx` (`idPanier`);
+  ADD PRIMARY KEY (`idCommande`,`idUtilisateur`),
+  ADD KEY `fk_commande_utilisateur1_idx` (`idUtilisateur`);
 
 --
--- Index pour la table `panier`
+-- Index pour la table `lignedecommande`
 --
-ALTER TABLE `panier`
-  ADD PRIMARY KEY (`idPanier`,`idUtilisateur`,`idArticle`),
-  ADD KEY `fk_panier_utilisateur1_idx` (`idUtilisateur`),
-  ADD KEY `fk_panier_article1_idx` (`idArticle`);
+ALTER TABLE `lignedecommande`
+  ADD PRIMARY KEY (`commande_idCommande`,`commande_idUtilisateur`,`article_idArticle`),
+  ADD KEY `fk_commande_has_article_article1_idx` (`article_idArticle`),
+  ADD KEY `fk_commande_has_article_commande1_idx` (`commande_idCommande`,`commande_idUtilisateur`);
 
 --
 -- Index pour la table `sexe`
@@ -257,11 +250,6 @@ ALTER TABLE `categorie`
 ALTER TABLE `commande`
   MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `panier`
---
-ALTER TABLE `panier`
-  MODIFY `idPanier` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `sexe`
 --
 ALTER TABLE `sexe`
@@ -275,12 +263,12 @@ ALTER TABLE `taille`
 -- AUTO_INCREMENT pour la table `type`
 --
 ALTER TABLE `type`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
@@ -297,15 +285,14 @@ ALTER TABLE `article`
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD CONSTRAINT `fk_commande_panier1` FOREIGN KEY (`idPanier`) REFERENCES `panier` (`idPanier`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_commande_utilisateur1` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `panier`
+-- Contraintes pour la table `lignedecommande`
 --
-ALTER TABLE `panier`
-  ADD CONSTRAINT `fk_panier_article1` FOREIGN KEY (`idArticle`) REFERENCES `article` (`idArticle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_panier_utilisateur1` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `lignedecommande`
+  ADD CONSTRAINT `fk_commande_has_article_article1` FOREIGN KEY (`article_idArticle`) REFERENCES `article` (`idArticle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_commande_has_article_commande1` FOREIGN KEY (`commande_idCommande`,`commande_idUtilisateur`) REFERENCES `commande` (`idCommande`, `idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `utilisateur`

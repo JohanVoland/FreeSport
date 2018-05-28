@@ -13,6 +13,9 @@ try
             case 'accueil' :
                 accueil();
                 break;
+            case 'vue_ajouter' :
+                ajouter();
+                break;
             default :
                 throw new Exception("action non valide");
         }

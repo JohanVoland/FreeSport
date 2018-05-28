@@ -15,3 +15,8 @@ function erreur($e)
 }
 
 // ----------------- Fonctions en lien avec les utilisateurs ---------------------
+
+
+// ---------------- Fonctions en lien avec les articles --------------------------
+
+// Ajouter des articles
