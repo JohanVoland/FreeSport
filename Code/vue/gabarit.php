@@ -47,7 +47,10 @@
         <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a>
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a>
         <a href="#footer"  class="w3-bar-item w3-button w3-padding">Subscribe</a>
-        <a href="index.php?action=vue_ajouter">Ajouter article</a>
+        <br/>
+        <a href="index.php?action=vue_ajouter" class="w3-bar-item w3-button w3-padding">Ajouter article</a>
+        <a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Aller à l'accueil</a>
+        <a href="index.php?action=vue_articles" class="w3-bar-item w3-button w3-padding">Articles</a>
 
     </nav>
 

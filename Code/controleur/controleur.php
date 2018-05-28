@@ -17,6 +17,28 @@ function erreur($e)
 // ----------------- Fonctions en lien avec les utilisateurs ---------------------
 
 
-// ---------------- Fonctions en lien avec les articles --------------------------
+// ----------------- Ajout d'articles --------------------------------------------
 
-// Ajouter des articles
+// Quand aucune donnée n'a été inscrite
+function ajouter()
+{
+    require "vue/vue_ajouter.php";
+}
+
+// Après que des données est été ajoutées
+function ajout()
+{
+    // Ajout de l'article
+    ajouterArticleBD();
+
+    // Redirection vers les articles
+    accueil();
+}
+
+// --------------- Afficher les articles -----------------------------------------
+
+function afficherArticles()
+{
+    articles();
+    require "vue/vue_articles.php";
+}

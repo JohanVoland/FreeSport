@@ -13,8 +13,14 @@ try
             case 'accueil' :
                 accueil();
                 break;
-            case 'vue_ajouter' :
+            case 'vue_ajouter' :    // Avant d'avoir inscrit des données
                 ajouter();
+                break;
+            case 'ajout' :  // Après avoir inscrit des données
+                ajout();
+                break;
+            case 'vue_articles' :
+                afficherArticles();
                 break;
             default :
                 throw new Exception("action non valide");
