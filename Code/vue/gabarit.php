@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Free Sport</title>
+		<title><?=$titre;?></title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -18,45 +18,41 @@
             .w3-sidebar a {font-family: "Roboto", sans-serif}
             body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         </style>
+
+        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     </head>
 
-    <body class="w3-content" style="max-width:100px">
+    <body class="w3-content">
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
         <div class="w3-container w3-display-container w3-padding-16">
             <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-            <h3 class="w3-wide"><b>LOGO</b></h3>
+            <h3 class="w3-wide"><b><img src="images/logo.PNG"></b></h3>
         </div>
-        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-            <a href="#" class="w3-bar-item w3-button">Shirts</a>
-            <a href="#" class="w3-bar-item w3-button">Dresses</a>
-            <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-                Jeans <i class="fa fa-caret-down"></i>
-            </a>
-            <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-                <a href="#" class="w3-bar-item w3-button">Relaxed</a>
-                <a href="#" class="w3-bar-item w3-button">Bootcut</a>
-                <a href="#" class="w3-bar-item w3-button">Straight</a>
-            </div>
-            <a href="#" class="w3-bar-item w3-button">Jackets</a>
-            <a href="#" class="w3-bar-item w3-button">Gymwear</a>
-            <a href="#" class="w3-bar-item w3-button">Blazers</a>
-            <a href="#" class="w3-bar-item w3-button">Shoes</a>
-        </div>
-        <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a>
-        <a href="#footer"  class="w3-bar-item w3-button w3-padding">Subscribe</a>
-        <br/>
-        <a href="index.php?action=vue_ajouter" class="w3-bar-item w3-button w3-padding">Ajouter article</a>
-        <a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Aller à l'accueil</a>
-        <a href="index.php?action=vue_articles" class="w3-bar-item w3-button w3-padding">Articles</a>
 
+        <br/>
+        <ul class="nav">
+            <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Aller à l'accueil</a></li>
+
+            <li>
+                <a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">
+                    <?php if (isset($_SESSION['login'])) :?>
+                        <a href="index.php?action=vue_login">Logout</a>
+                    <?php else : ?>
+                        <a href="index.php?action=vue_login">Login</a>
+                    <?php endif ?>
+                </a>
+            </li>
+
+            <li><br><a href="index.php?action=vue_articles" class="w3-bar-item w3-button w3-padding">Articles</a></li>
+            <li><a href="index.php?action=vue_ajouter" class="w3-bar-item w3-button w3-padding">Ajouter article</a></li>
+        </ul>
     </nav>
 
     <!-- Top menu on small screens -->
     <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-        <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+        <div class="w3-bar-item w3-padding-24 w3-wide"><img src="images/logo.PNG"></div>
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     </header>
 
@@ -73,21 +69,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    <footer class="w3-padding-64 w3-light-grey w3-small" id="footer" style="margin-left: 24.5%">
         <div class="w3-row-padding">
-            <div class="w3-col s4">
-                <h4>Contact</h4>
-                <p>Questions? Go ahead.</p>
-                <form action="/action_page.php" target="_blank">
-                    <p><input class="w3-input w3-border" type="text" placeholder="Name" name="Name" required></p>
-                    <p><input class="w3-input w3-border" type="text" placeholder="Email" name="Email" required></p>
-                    <p><input class="w3-input w3-border" type="text" placeholder="Subject" name="Subject" required></p>
-                    <p><input class="w3-input w3-border" type="text" placeholder="Message" name="Message" required></p>
-                    <button type="submit" class="w3-button w3-block w3-black">Send</button>
-                </form>
-            </div>
-
-            <div class="w3-col s4">
+            <div class="w3-col s6" style="padding-left: 5%">
                 <h4>About</h4>
                 <p><a href="#">About us</a></p>
                 <p><a href="#">We're hiring</a></p>
@@ -100,7 +84,7 @@
                 <p><a href="#">Help</a></p>
             </div>
 
-            <div class="w3-col s4 w3-justify">
+            <div class="w3-col s5 w3-justify">
                 <h4>Store</h4>
                 <p><i class="fa fa-fw fa-map-marker"></i> Company Name</p>
                 <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>

@@ -50,3 +50,23 @@ function articles()
     // Application de la requête
     $connexion->query($requete);
 }
+
+// -----------------------------------------------------
+// Fonctions liées aux utilisateurs
+// -----------------------------------------------------
+// getLogin()
+// Fonction : Récupérer les données du login de la BD
+// Sortie : $resultats
+
+function getLogin($post)
+{
+    // connexion à la BD snows
+    $connexion = getBD();
+
+    // Définition de la requête
+    $requete = "SELECT * FROM tblvendeurs WHERE pseudo= '".$post['fLogin']."' AND password='".$post['fPass']."';";
+
+    // Exécution de la requête et renvoi des résultats
+    $resultats = $connexion->query($requete);
+    return $resultats;
+}
