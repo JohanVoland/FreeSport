@@ -45,10 +45,15 @@ function articles()
     $connexion = getBD();
 
     // Définition de la requête
-    $requete = "SELECT * FROM article ORDER BY idArticle";
+    $requete = "SELECT article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe 
+                FROM article INNER JOIN type ON article.idType = type.idType 
+                INNER JOIN taille ON article.idTaille = taille.idTaille 
+                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE ";
 
     // Application de la requête
-    $connexion->query($requete);
+    $afficherArticles = $connexion->query($requete);
+
+    return $afficherArticles;
 }
 
 // -----------------------------------------------------

@@ -58,6 +58,6 @@ function ajout()
 
 function afficherArticles()
 {
-    articles();
+    $afficherArticles = articles();
     require "vue/vue_articles.php";
 }
