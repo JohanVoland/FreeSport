@@ -41,6 +41,12 @@ function inscription()
     require "vue/vue_inscription.php";
 }
 
+function ajout_membre()
+{
+    ajoutMembre($_POST);  // Envoi vers le modèle des contenus issus du formulaire
+    require 'vue/vue_inscription.php';
+}
+
 // ----------------- Ajout d'articles --------------------------------------------
 
 // Quand aucune donnée n'a été inscrite

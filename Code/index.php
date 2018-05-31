@@ -19,6 +19,9 @@ try
             case 'vue_inscription' :
                 inscription();
                 break;
+            case 'enregistrer' :
+                ajout_membre();
+                break;
             case 'vue_ajouter' :    // Avant d'avoir inscrit des données
                 ajouter();
                 break;

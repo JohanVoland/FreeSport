@@ -33,6 +33,12 @@
 
         <br/>
         <ul class="nav">
+            <?php if (isset($_SESSION['login'])) :?>
+                <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['login']; ?></a></li>
+            <?php else : ?>
+                <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Bonjour visiteur</a></li>
+            <?php endif ?>
+
             <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Aller à l'accueil</a></li>
             <li><a href="index.php?action=vue_inscription" class="w3-bar-item w3-button w3-padding">S'inscrire</a></li>
 
