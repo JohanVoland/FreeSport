@@ -69,7 +69,7 @@ function getLogin($post)
     $connexion = getBD();
 
     // Définition de la requête
-    $requete = "SELECT * FROM tblvendeurs WHERE pseudo= '".$post['fLogin']."' AND password='".$post['fPass']."';";
+    $requete = "SELECT * FROM utilisateur WHERE pseudo='".$post['pseudo']."' AND password='".$post['fPass']."';";
 
     // Exécution de la requête et renvoi des résultats
     $resultats = $connexion->query($requete);

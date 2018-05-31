@@ -19,7 +19,7 @@ function erreur($e)
 //login
 function login()
 {
-    if (isset ($_POST['fLogin']) && isset ($_POST['fPass']))
+    if (isset ($_POST['pseudo']) && isset ($_POST['fPass']))
     {
         $resultats = getLogin($_POST);
         require "vue/vue_login.php";
@@ -34,6 +34,11 @@ function login()
         else
             require "vue/vue_login.php";
     }
+}
+
+function inscription()
+{
+    require "vue/vue_inscription.php";
 }
 
 // ----------------- Ajout d'articles --------------------------------------------

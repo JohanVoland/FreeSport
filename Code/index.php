@@ -16,6 +16,9 @@ try
             case 'vue_login' :
                 login();
                 break;
+            case 'vue_inscription' :
+                inscription();
+                break;
             case 'vue_ajouter' :    // Avant d'avoir inscrit des données
                 ajouter();
                 break;

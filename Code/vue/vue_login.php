@@ -1,10 +1,6 @@
 <?php
 $titre ='Rent A Snow - Login/Logout';
 
-/* idCategorie = 1 -> membre
- * idCategorie = 2 -> resp
- * idCategorie = 3 -> admin*/
-
 // Tampon de flux stocké en mémoire
 ob_start();
 ?>
@@ -17,15 +13,26 @@ ob_start();
             // les données dans le formulaire sont exactes
             $ligne=$resultats->fetch();
             // Test pour savoir si on est admin
-            if ((isset($ligne['idCategorie']))==3)
+            if ($ligne['idCategorie']==3)
             {
                 echo "Bonjour. Vous êtes connecté en tant qu'administrateur.";
                 // Création de la session
                 $_SESSION['login']=$ligne['pseudo'];
                 $_SESSION['typeUser']="admin";
-            }
-            else
-                echo "Erreur de login";
+            } else if ($ligne['idCategorie']==2)
+            {
+                echo "Bonjour. Vous êtes connecté en tant que responsable des ventes.";
+                $_SESSION['login']=$ligne['pseudo'];
+                $_SESSION['typeUser']="responsable";
+            }else if ($ligne['idCategorie']==1)
+            {
+                echo "Bonjour. Vous êtes bien connecté en tant que ".$ligne['prenom']." ".$ligne['nom'];
+                // Création de la session
+                $_SESSION['login']=$ligne['prenom']." ".$ligne['nom'];
+                $_SESSION['typeUser']="membre";
+            } else
+                echo "Erreur de login/mot de passe";
+
         }
         else
         {
@@ -41,7 +48,7 @@ ob_start();
                     <tr>
                         <td>Login :</td>
                         <td>
-                            <input type="text" placeholder="Entrez votre login" name="fLogin" value="<?=@$_POST['fLogin'] ?>"/>
+                            <input type="text" placeholder="Entrez votre login" name="pseudo" value="<?=@$_POST['pseudo'] ?>"/>
                             <!-- code php pour éviter de retaper le contenu en cas d'erreur -->
                         </td>
                     </tr>
