@@ -76,6 +76,8 @@ $titre="Free Sport - Articles";
             <strong>Type : </strong><?=$resultat['nomType'];?><br/>
             <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
             <strong>Genre : </strong><?=$resultat['nomSexe'];?>
+            <a href="index.php?action=vue_modifier_article&id=<?= $resultat['idArticle']?>"><i class="general foundicon-edit icon"></a>
+            <a href="index.php?action=vue_supprimer&id=<?=$resultat['idArticle']?>"><i class="general foundicon-remove icon"></i></a>
         </div>
     <?php //} ?>
 

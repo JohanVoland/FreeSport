@@ -108,3 +108,60 @@ function ajoutMembre($_POST)
         trigger_error($e->getMessage(), E_USER_ERROR);
     }
 }
+
+// Supprimer un article
+function supprimerArticleBD()
+{
+    // Connexion à la BDD
+    $connexion = getBD();
+
+    // Récupération de l'ID de l'article
+    $id = $_POST['idArticle'];
+
+    // Création de la requête
+    $requete = "DELETE * FROM article WHERE idArticle = $id";
+
+    // Execution de la requête
+    $connexion->exec($requete);
+}
+
+// Modifier un article
+function modifierArticleBD()
+{
+    // Connexion à la BDD
+    $connexion = getBD();
+
+    // Récupération des champs
+    $id = $_POST['idArticle'];
+    $nom = $_POST['nomArticle'];
+    $prix = $_POST['prixArticle'];
+    $dispo = $_POST['dateDispo'];
+    $nbreDispo = $_POST['nbreDispo'];
+    $image = $_POST['imageArticle'];
+    $type = $_POST['type'];
+    $taille = $_POST['taille'];
+    $sexe = $_POST['sexe'];
+
+    // Création de la requête
+    $requete = "UPDATE article SET idArticle = $id, nom = $nom, prix = $prix, disponibilite = $dispo, nombreDispo = $nbreDispo, image = $image, idType = $type, idTaille = $taille, idSexe = $sexe WHERE idArticle = $id";
+
+    // Application de la requete
+    $connexion->query($requete);
+}
+
+// Prendre tous les utilisateurs
+function afficherUsersBD()
+{
+    // Connexion à la BD
+    $connexion = getBD();
+
+    // Création de la requête
+    $requete = "SELECT utilisateur.pseudo, utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.rue, utilisateur.npa, utilisateur.ville, categorie.nom AS nomCategorie
+                FROM article INNER JOIN categorie ON article.idCategorie = categorie.idCategorie";
+
+    // Application de la requête
+    $afficherUsers = $connexion->exec($requete);
+
+    return $afficherUsers;
+}
+

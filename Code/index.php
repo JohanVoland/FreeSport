@@ -31,6 +31,15 @@ try
             case 'vue_articles' :
                 afficherArticles();
                 break;
+            case 'vue_supprimer_article' :
+                supprimerArticle();
+                break;
+            case 'vue_modifier_article' :
+                modifierArticle();
+                break;
+            case 'vue_liste_users' :
+                afficherUsers();
+                break;
             default :
                 throw new Exception("action non valide");
         }

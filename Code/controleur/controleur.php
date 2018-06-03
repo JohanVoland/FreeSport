@@ -72,3 +72,44 @@ function afficherArticles()
     $afficherArticles = articles();
     require "vue/vue_articles.php";
 }
+
+// -------------- Supprimer un article -------------------------------------------
+
+function supprimerArticle()
+{
+    supprimerArticleBD();
+    require "vue/vue_supprimer_article.php";
+}
+
+function supprimerArticleConfirmer()
+{
+    require "vue/vue_supprimer_article_confirmer.php";
+}
+
+// -------------- Modifier un article -------------------------------------------
+
+function modifierArticle()
+{
+    if (isset($_GET['id']))
+    {
+        $afficherArticles = articles();
+        require "vue/vue_modifier_article.php";
+        exit();
+    }
+    else
+    {
+        // Modifie l'article
+        modifierArticleBD();
+
+        // Renvoi vers la page d'accueil
+        afficherArticles();
+    }
+}
+
+// ------------- Afficher la liste des utilisateurs --------------------------------
+
+function afficherUsers()
+{
+    $afficherUsers = afficherUsersBD();
+    require "vue/vue_liste_users.php";
+}
