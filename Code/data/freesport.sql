@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 28 Mai 2018 à 08:25
+-- Généré le :  Lun 04 Juin 2018 à 06:04
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -30,12 +30,21 @@ CREATE TABLE `article` (
   `idArticle` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL,
   `prix` int(11) DEFAULT NULL,
-  `disponibilite` int(11) DEFAULT NULL,
+  `disponibilite` date DEFAULT NULL,
+  `nombreDispo` int(11) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
   `idType` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
   `idSexe` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `article`
+--
+
+INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idSexe`) VALUES
+(1, 'Test', 124, '0004-03-12', 123, 'wrere', 2, 2, 1),
+(2, 'test 2', 99, '2018-05-25', 5, 'image', 4, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -238,7 +247,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --

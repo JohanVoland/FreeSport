@@ -44,11 +44,41 @@ function articles()
     // Connexion à la BD
     $connexion = getBD();
 
-    // Définition de la requête
-    $requete = "SELECT article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe 
+    // Récupération des filtres
+    $type = @$_POST['filtreType'];
+    $taille = @$_POST['filtreTaille'];
+    $sexe = @$_POST['filtreGenre'];
+
+    // Filtres pas au point
+    // Si aucun filtre n'a été appliqué
+    /*if ($type == "#" && $taille == "#" && $sexe == "#") {
+        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
+                FROM article INNER JOIN type ON article.idType = type.idType
+                INNER JOIN taille ON article.idTaille = taille.idTaille
+                INNER JOIN sexe ON article.idSexe = sexe.idSexe";
+    //}
+    // Si tous les filtre ont été appliqués
+    else if ($type !== "#" && $taille !== "#" && $sexe !== "#")
+    {
+        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
+                FROM article INNER JOIN type ON article.idType = type.idType
+                INNER JOIN taille ON article.idTaille = taille.idTaille
+                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE article.idType = $type AND article.idTaille = $taille AND article.idSexe = $sexe";
+    }
+    // Si 1 filtre a été appliqué
+    else if ($type !== "#" || $taille !== "#" || $sexe !== "#")
+    {
+        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
+                FROM article INNER JOIN type ON article.idType = type.idType
+                INNER JOIN taille ON article.idTaille = taille.idTaille
+                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE article.idType = $type OR article.idTaille = $taille OR article.idSexe = $sexe";
+    }*/
+
+    // Création de la requête
+    $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe 
                 FROM article INNER JOIN type ON article.idType = type.idType 
                 INNER JOIN taille ON article.idTaille = taille.idTaille 
-                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE ";
+                INNER JOIN sexe ON article.idSexe = sexe.idSexe";
 
     // Application de la requête
     $afficherArticles = $connexion->query($requete);

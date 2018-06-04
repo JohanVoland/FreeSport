@@ -38,24 +38,24 @@ $titre="Free Sport - Articles";
         Type d'article :
         <select name="filtreType">
             <option value="#">Tout</option>
-            <option value="T-shirt">T-shirt</option>
-            <option value="Veste">Veste</option>
-            <option value="Chaussure">Chaussure</option>
-            <option value="Training">Training</option>
+            <option value="1">T-shirt</option>
+            <option value="2">Veste</option>
+            <option value="3">Chaussure</option>
+            <option value="4">Training</option>
         </select>
         Taille :
         <select name="filtreTaille">
             <option value="#">Tout</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
+            <option value="1">S</option>
+            <option value="2">M</option>
+            <option value="3">L</option>
+            <option value="4">XL</option>
         </select>
         Genre :
         <select name="filtreGenre">
             <option value="#">Tout</option>
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
+            <option value="1">Homme</option>
+            <option value="2">Femme</option>
         </select>
         <input class="btn" type="submit" value="Appliquer">
     </form>
@@ -63,65 +63,18 @@ $titre="Free Sport - Articles";
     <!-- Affichage des appartements -->
 <?php foreach ($afficherArticles as $resultat) :?>
 
-    <!-- Sélection des articles selon les filtres -->
-
-    <!-- Filtre du type -->
-    <?php //if ($resultat['nomType'] == @$_POST['filtreType'] || @$_POST['filtreType'] == "#") { ?>
-        <div class="span12" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
-            <strong>Nom : </strong><?=$resultat['nom'];?><br/>
-            <strong>Prix : </strong><?=$resultat['prix'];?><br/>
-            <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
-            <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
-            <strong>Image : </strong><?=$resultat['image'];?><br/>
-            <strong>Type : </strong><?=$resultat['nomType'];?><br/>
-            <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
-            <strong>Genre : </strong><?=$resultat['nomSexe'];?>
-            <a href="index.php?action=vue_modifier_article&id=<?= $resultat['idArticle']?>"><i class="general foundicon-edit icon"></a>
-            <a href="index.php?action=vue_supprimer&id=<?=$resultat['idArticle']?>"><i class="general foundicon-remove icon"></i></a>
-        </div>
-    <?php //} ?>
-
-    <!-- Filtre de la taille
-    <?php //} else if ($resultat['nomTaille'] == @$_POST['filtreTaille'] || @$_POST['filtreTaille'] == "#") { ?>
-        <div class="span12" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
-            <strong>Nom : </strong><?=$resultat['nom'];?><br/>
-            <strong>Prix : </strong><?=$resultat['prix'];?><br/>
-            <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
-            <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
-            <strong>Image : </strong><?=$resultat['image'];?><br/>
-            <strong>Type : </strong><?=$resultat['nomType'];?><br/>
-            <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
-            <strong>Genre : </strong><?=$resultat['nomSexe'];?>
-        </div>
-    <?php// } ?>
-
-    <!-- Filtre du genre
-    <?php //} else if ($resultat['nomSexe'] == @$_POST['filtreGenre'] || @$_POST['filtreGenre'] == "#") { ?>
-        <div class="span12" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
-            <strong>Nom : </strong><?=$resultat['nom'];?><br/>
-            <strong>Prix : </strong><?=$resultat['prix'];?><br/>
-            <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
-            <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
-            <strong>Image : </strong><?=$resultat['image'];?><br/>
-            <strong>Type : </strong><?=$resultat['nomType'];?><br/>
-            <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
-            <strong>Genre : </strong><?=$resultat['nomSexe'];?>
-        </div>
-    <?php //} ?>
-
-    <!-- Si on n'a appliqué aucun filtre, affiche tout
-    <?php //} else if (@$_POST['filtreType'] == null && @$_POST['filtreTaille'] == null && @$_POST['filtreGenre'] == null) { ?>
-        <div class="span12" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
-            <strong>Nom : </strong><?=$resultat['nom'];?><br/>
-            <strong>Prix : </strong><?=$resultat['prix'];?><br/>
-            <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
-            <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
-            <strong>Image : </strong><?=$resultat['image'];?><br/>
-            <strong>Type : </strong><?=$resultat['nomType'];?><br/>
-            <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
-            <strong>Genre : </strong><?=$resultat['nomSexe'];?>
-        </div>-->
-    <?php //} ?>
+    <div class="span12" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
+        <strong>Nom : </strong><?=$resultat['nom'];?><br/>
+        <strong>Prix : </strong><?=$resultat['prix'];?><br/>
+        <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
+        <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
+        <strong>Image : </strong><?=$resultat['image'];?><br/>
+        <strong>Type : </strong><?=$resultat['nomType'];?><br/>
+        <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
+        <strong>Genre : </strong><?=$resultat['nomSexe'];?><br/>
+        <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>">modifier</a> <!-- <i class="general foundicon-edit icon"/> -->
+        <a href="index.php?action=vue_supprimer&id=<?=$resultat['idArticle']?>">supprimer</a> <!-- <i class="general foundicon-remove icon"/> -->
+    </div>
 
 <?php endforeach;?>
 
