@@ -1,6 +1,7 @@
 <?php
 
 require  'controleur/controleur.php';
+session_start();
 
 try
 {
@@ -21,6 +22,12 @@ try
                 break;
             case 'enregistrer' :
                 ajout_membre();
+                break;
+            case 'profil' :
+                profil();
+                break;
+            case 'panier' :
+                panier();
                 break;
             case 'vue_ajouter' :    // Avant d'avoir inscrit des données
                 ajouter();

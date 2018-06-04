@@ -47,6 +47,35 @@ function ajout_membre()
     require 'vue/vue_inscription.php';
 }
 
+function profil()
+{
+    $resultat = articles();
+    require 'vue/vue_profil.php';
+}
+
+// ----------------- Fonctions en lien avec le panier---------------------
+
+function panier()
+{
+    require 'vue/vue_panier.php';
+}
+
+function ajoutPanier()
+{
+    if (isset($_GET['ID']))
+    {
+        // Si j'ai un ID --> Récupérer les données du snow choisi
+        $resultat = articles();
+        require "vue/vue_ajout_panier.php";
+        //exit();
+    }
+    else
+    {
+        //updateSnow($_POST);
+        $resultats=articles();
+        require "vue/vue_articles.php";
+    }
+}
 // ----------------- Ajout d'articles --------------------------------------------
 
 // Quand aucune donnée n'a été inscrite
