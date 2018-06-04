@@ -15,7 +15,7 @@ $titre="Free Sport - Supprimer un article";
     <h2>Supprimer un article - confirmation</h2>
     <p>Voulez-vous supprimer cet article ?</p>
 
-    <a href="index.php?action=vue_supprimer_article&id=<?=$_POST['idArticle']?>" class="btn btn-default">OUI</a>
+    <a href="index.php?action=vue_supprimer_article&id=<?=$_GET['id']?>" class="btn btn-default">OUI</a>
     <br/><br/>
     <a href="index.php?action=vue_articles" class="btn btn-default">NON</a>
 

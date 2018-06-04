@@ -51,19 +51,19 @@ $titre="Free Sport - Articles";
             <option value="3">L</option>
             <option value="4">XL</option>
         </select>
-        Genre :
+        <!--Genre :
         <select name="filtreGenre">
             <option value="#">Tout</option>
             <option value="1">Homme</option>
             <option value="2">Femme</option>
-        </select>
+        </select>-->
         <input class="btn" type="submit" value="Appliquer">
     </form>
 
     <!-- Affichage des appartements -->
 <?php foreach ($afficherArticles as $resultat) :?>
 
-    <div class="span12" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
+    <div class="form" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
         <strong>Nom : </strong><?=$resultat['nom'];?><br/>
         <strong>Prix : </strong><?=$resultat['prix'];?><br/>
         <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
@@ -73,7 +73,7 @@ $titre="Free Sport - Articles";
         <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
         <strong>Genre : </strong><?=$resultat['nomSexe'];?><br/>
         <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>">modifier</a> <!-- <i class="general foundicon-edit icon"/> -->
-        <a href="index.php?action=vue_supprimer&id=<?=$resultat['idArticle']?>">supprimer</a> <!-- <i class="general foundicon-remove icon"/> -->
+        <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>">supprimer</a> <!-- <i class="general foundicon-remove icon"/> -->
     </div>
 
 <?php endforeach;?>

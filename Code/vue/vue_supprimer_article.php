@@ -14,7 +14,7 @@ $titre="Free Sport - Supprimer un article";
     <!-- Contenu -->
     <h2>Supprimer un article</h2>
     <p>L'article a été supprimé</p>
-    <a href="index.php?action=vue_articles">OK</a>
+    <a href="index.php?action=vue_articles" class="btn btn-default">OK</a>
 
 <?php
 $contenu = ob_get_clean();
