@@ -76,7 +76,7 @@ function getLogin($post)
     return $resultats;
 }
 
-function ajoutMembre($_POST)
+function ajoutMembre()
 {
     // Connexion à la BD et au serveur
     $connexion = getBD();
@@ -84,28 +84,14 @@ function ajoutMembre($_POST)
     // test si la valeur est déjà existante
     try
     {
-        // requête pour tester l'ID du snow existe déjà
-        $reqID ="SELECT idsurf FROM tblsurfs WHERE idsurf ='".$fIDSnow."';";
-        $resID =$connexion->query($reqID);
-        $ligne= $resID->fetch();
 
-        // Ajout de snow si pas de doublon --> fetch() ne renvoie rien
-        if (empty($ligne['idsurf']))
-        {
-            // pas de doublon --> OK, on peut insérer les données
-            $reqIns="INSERT INTO tblsurfs VALUES ('".$fIDSnow."','".$fMarque."','".$fBoot."','".$fType."',".$fDispo.",'')";
-            $connexion->exec($reqIns);
-        }
-        else
-        {
-            // doublon --> erreur
-            throw new Exception("Erreur : doublon sur la clé primaire IDSurf");
-        }
+        $reqIns="INSERT INTO utilisateur(pseudo,nom,prenom,password,email,rue,npa,idCategorie,ville) VALUES ('".$pseudo."','".$nom."','".$prenom."','".$password."','".$email."','".$rue."','".$npa."','1','".$ville."')";
+        $connexion->exec($reqIns);
 
     }
     catch (Exception $e)
     {
-        trigger_error($e->getMessage(), E_USER_ERROR);
+        echo $e->getMessage();
     }
 }
 

@@ -33,30 +33,19 @@ ob_start();
                     <?php endif ?>
                 </td>
 
-                <td>Valider le mot de passe : </td>
-                <td>
-                    <?php if (isset($_POST['erreur'])) : ?>
-                        <input type="password" class="inputError" name="password" value="<?= @$_POST['password'];?>" required>
-                    <?php else : ?>
-                        <input type="password" name="password" value="<?= @$_POST['password']; ?>" required>
-                    <?php endif ?>
-                </td>
-            </tr>
-            <tr>
                 <td>Rue : </td>
                 <td><input type="text" name="rue" value="<?= @$_POST['rue']; ?>" required></td>
-
-                <td>NPA : </td>
-                <td><input type="text" name="npa" value="<?= @$_POST['npa']; ?>" required></td>
             </tr>
             <tr>
+                <td>NPA : </td>
+                <td><input type="text" name="npa" value="<?= @$_POST['npa']; ?>" required></td>
+
                 <td>Ville : </td>
                 <td><input type="text" name="ville" value="<?= @$_POST['ville']; ?>" required></td>
-                <td></td><td></td>
             </tr>
             <tr>
                 <td><input class="btn" type="submit" value="Confirmer"/></td>
-                <td></td>
+                <td></td><td></td><td></td>
             </tr>
         </table>
     </form>
