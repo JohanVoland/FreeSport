@@ -5,7 +5,7 @@ $titre ='Rent A Snow - Panier';
 ob_start();
 ?>
 
-<p>C'est la page panier. :-)</p>
+<h2>Votre Panier</h2>
 
 <?php
 $contenu = ob_get_clean();

@@ -2,16 +2,21 @@
 $titre ='Rent A Snow - Profil';
 
 // Tampon de flux stocké en mémoire
-ob_start();
+ob_start(); //$resultat
 ?>
 
-<div class="span12" id="divMain">
-    <h1 style="text-align: center;">Votre Profil</h1>
 
-    <div class="span3" id="profil_info">
-        
+    <h2>Votre Profil</h2>
+
+    <div class="span12" id = "afficherUsers">
+        Nom d'utilisateur : <?php echo $_SESSION['pseudo']; ?><br/>
+        Nom et Prenom : <?php echo $_SESSION['login']; ?><br/>
+        Email : <?php echo $_SESSION['email']; ?><br/>
+        Adresse : <?php echo $_SESSION['rue']; ?><br/>
+        <?php echo $_SESSION['adresse']; ?><br/><br/>
     </div>
-</div>
+
+    <a href="index.php?action=panier">Accéder au panier</a>
 
 <?php
 $contenu = ob_get_clean();

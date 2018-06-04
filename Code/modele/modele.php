@@ -106,6 +106,7 @@ function getLogin($post)
     return $resultats;
 }
 
+// Ajouter un membre (inscription)
 function ajoutMembre()
 {
     // Connexion à la BD et au serveur
@@ -173,7 +174,7 @@ function afficherUsersBD()
 
     // Création de la requête
     $requete = "SELECT utilisateur.pseudo, utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.rue, utilisateur.npa, utilisateur.ville, categorie.nom AS nomCategorie
-                FROM article INNER JOIN categorie ON article.idCategorie = categorie.idCategorie";
+                FROM utilisateur INNER JOIN categorie ON utilisateur.idCategorie = categorie.idCategorie";
 
     // Application de la requête
     $afficherUsers = $connexion->exec($requete);

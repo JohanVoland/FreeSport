@@ -28,7 +28,12 @@ ob_start();
             {
                 echo "Bonjour. Vous êtes bien connecté en tant que ".$ligne['prenom']." ".$ligne['nom'];
                 // Création de la session
-                $_SESSION['login']=$ligne['prenom']." ".$ligne['nom'];
+                $_SESSION['login']= $ligne['prenom']." ".$ligne['nom'];
+                $_SESSION['pseudo']= $ligne['pseudo'];
+                $_SESSION['password']= $ligne['password'];
+                $_SESSION['email']= $ligne['email'];
+                $_SESSION['rue']= $ligne['rue'];
+                $_SESSION['adresse']= $ligne['npa']." ".$ligne['ville'];
                 $_SESSION['typeUser']="membre";
             } else
                 echo "Erreur de login/mot de passe";

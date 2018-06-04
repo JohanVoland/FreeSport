@@ -49,7 +49,6 @@ function ajout_membre()
 
 function profil()
 {
-    $resultat = articles();
     require 'vue/vue_profil.php';
 }
 
