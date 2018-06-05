@@ -97,8 +97,19 @@ function ajout()
 
 function afficherArticles()
 {
-    $afficherArticles = articles();
-    require "vue/vue_articles.php";
+    if (isset($_POST['filtreType']) && isset($_POST['filtreTaille']))
+    {
+        $afficherArticles = articles();
+        require "vue/vue_articles.php";
+    }
+    else
+    {
+        $_POST['filtreType'] = "#";
+        $_POST['filtreTaille'] = "#";
+
+        $afficherArticles = articles();
+        require "vue/vue_articles.php";
+    }
 }
 
 // -------------- Supprimer un article -------------------------------------------
@@ -120,7 +131,7 @@ function modifierArticle()
 {
     if (isset($_GET['id']))
     {
-        $afficherArticles = articles();
+        $getArticle = getArticle();
         require "vue/vue_modifier_article.php";
         exit();
     }

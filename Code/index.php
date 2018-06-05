@@ -41,6 +41,9 @@ try
             case 'vue_supprimer_article' :
                 supprimerArticle();
                 break;
+            case 'vue_supprimer_article_confirmer' :
+                supprimerArticleConfirmer();
+                break;
             case 'vue_modifier_article' :
                 modifierArticle();
                 break;
