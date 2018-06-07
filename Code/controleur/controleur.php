@@ -117,7 +117,8 @@ function afficherArticles()
 function supprimerArticle()
 {
     supprimerArticleBD();
-    require "vue/vue_supprimer_article.php";
+    //require "vue/vue_supprimer_article.php";
+    afficherArticles();
 }
 
 function supprimerArticleConfirmer()

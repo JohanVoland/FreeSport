@@ -13,7 +13,7 @@ $titre="Free Sport - Ajouter un article";
 
     <!-- Contenu -->
     <h2>Ajouter un article</h2>
-    <form class="form" method="POST" action="index.php?action=ajout">
+    <form class="form" method="POST" action="index.php?action=ajout" enctype="multipart/form-data">
         <table class="table">
             <tr>
                 <td>Nom :</td>
@@ -63,7 +63,7 @@ $titre="Free Sport - Ajouter un article";
                 <td><input type="file" name="imageArticle" required></td>
             </tr>
             <tr>
-                <td><input class="btn" type="submit" value="ajouter"/></td>
+                <td><input class="btn" type="submit" value="ajouter" name="submit"/></td>
             </tr>
         </table>
     </form>

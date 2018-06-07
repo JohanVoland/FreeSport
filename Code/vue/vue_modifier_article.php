@@ -14,7 +14,7 @@ $titre="Free Sport - Modifier un article";
 <?php foreach ($getArticle as $resultat) :?>
     <div class="span12" id="divMain">
         <h2>Modifier un article</h2>
-        <form class="form" method="POST" action="index.php?action=ajout">
+        <form class="form" method="POST" action="index.php?action=vue_modifier_article">
             <table class="table">
                 <tr>
                     <td>ID :</td>

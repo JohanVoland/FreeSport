@@ -68,7 +68,7 @@ $titre="Free Sport - Articles";
         <strong>Prix : </strong><?=$resultat['prix'];?><br/>
         <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
         <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
-        <strong>Image : </strong><?=$resultat['image'];?><br/>
+        <strong>Image : </strong><img src="../images/upload/<?=$resultat['image'];?>"><br/>
         <strong>Type : </strong><?=$resultat['nomType'];?><br/>
         <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
         <strong>Genre : </strong><?=$resultat['nomSexe'];?><br/>

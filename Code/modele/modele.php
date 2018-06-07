@@ -26,10 +26,18 @@ function ajouterArticleBD()
     $prix = $_POST['prixArticle'];
     $dateDispo = $_POST['dateDispo'];
     $nbreDispo = $_POST['nbreDispo'];
-    $image = $_POST['imageArticle'];
     $type = $_POST['type'];
     $taille = $_POST['taille'];
     $sexe = $_POST['sexe'];
+
+    // Gestion de l'image
+
+    // Obtenir le nom de l'image
+    $image = $_FILES['imageArticle']['name'];
+    // Destination du fichier
+    $target = "imageTest/".basename($image);
+    // Déplacement du fichier
+    move_uploaded_file($image, $target);
 
     // Définition de la requête
     $requete = "INSERT INTO article (nom, prix, disponibilite, nombreDispo, image, idType, idTaille, idSexe) VALUES ('$nom', '$prix', '$dateDispo', '$nbreDispo', '$image', '$type', '$taille', '$sexe')";
@@ -71,12 +79,6 @@ function articles()
                 INNER JOIN taille ON article.idTaille = taille.idTaille
                 INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE article.idType = '".$type."' OR article.idTaille = '".$taille."'";
     }
-
-    // Création de la requête
-    /*$requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
-                FROM article INNER JOIN type ON article.idType = type.idType 
-                INNER JOIN taille ON article.idTaille = taille.idTaille 
-                INNER JOIN sexe ON article.idSexe = sexe.idSexe";*/
 
     // Application de la requête
     $afficherArticles = $connexion->query($requete);
@@ -131,13 +133,13 @@ function supprimerArticleBD()
     $connexion = getBD();
 
     // Récupération de l'ID de l'article
-    $id = $_POST['idArticle'];
+    $id = $_GET['id'];
 
     // Création de la requête
-    $requete = "DELETE * FROM article WHERE idArticle = $id";
+    $requete = "DELETE FROM article WHERE idArticle = '".$id."'";
 
     // Execution de la requête
-    $connexion->exec($requete);
+    $connexion->query($requete);
 }
 
 // Modifier un article
@@ -161,7 +163,7 @@ function modifierArticleBD()
     $requete = "UPDATE article SET idArticle = '".$id."', nom = '".$nom."', prix = '".$prix."', disponibilite = '".$dispo."', nombreDispo = '".$nbreDispo."', image = '".$image."', idType = '".$type."', idTaille = '".$taille."', idSexe = '".$sexe."' WHERE idArticle = '".$id."'";
 
     // Application de la requete
-    $connexion->query($requete);
+    $connexion->exec($requete);
 }
 
 // Prendre tous les utilisateurs
@@ -175,7 +177,7 @@ function afficherUsersBD()
                 FROM utilisateur INNER JOIN categorie ON utilisateur.idCategorie = categorie.idCategorie";
 
     // Application de la requête
-    $afficherUsers = $connexion->exec($requete);
+    $afficherUsers = $connexion->query($requete);
 
     return $afficherUsers;
 }

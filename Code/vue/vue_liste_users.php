@@ -16,7 +16,7 @@ $titre="Free Sport - Liste des utilisateurs";
 
     <!-- Affichage des appartements -->
 <?php foreach ($afficherUsers as $resultat) :?>
-    <div class="span12" id = "afficherUsers" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
+    <div class="form" id = "afficherUsers" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
         <strong>Pseudo : </strong><?=$resultat['pseudo'];?><br/>
         <strong>Nom : </strong><?=$resultat['nom'];?><br/>
         <strong>Prénom : </strong><?=$resultat['prenom'];?><br/>
