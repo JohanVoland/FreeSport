@@ -202,3 +202,16 @@ function getArticle()
 
     return $getArticle;
 }
+
+function ajout_panier()
+{
+    // connexion à la BD snows
+    $connexion = getBD();
+
+    // Définition de la requête
+    $requete = "SELECT * FROM lignedecommande;";
+
+    // Exécution de la requête et renvoi des résultats
+    $resultats = $connexion->query($requete);
+    return $resultats;
+}

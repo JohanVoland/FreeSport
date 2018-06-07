@@ -50,6 +50,12 @@ try
             case 'vue_liste_users' :
                 afficherUsers();
                 break;
+            case 'vue_liste_commande' :
+                afficherCommande();
+                break;
+            case 'vue_stock' :
+                stock();
+                break;
             default :
                 throw new Exception("action non valide");
         }

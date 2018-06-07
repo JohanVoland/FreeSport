@@ -1,5 +1,5 @@
 <?php
-$titre ='Rent A Snow - Login/Logout';
+$titre ='Free Sport - Login/Logout';
 
 // Tampon de flux stocké en mémoire
 ob_start();
