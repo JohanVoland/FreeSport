@@ -70,11 +70,21 @@ function ajoutPanier()
     }
     else
     {
-        //updateSnow($_POST);
         $resultats=articles();
         require "vue/vue_articles.php";
     }
 }
+
+function afficherCommande()
+{
+    require "vue/vue_commande.php";
+}
+
+function stock()
+{
+    require "vue/vue_stock.php";
+}
+
 // ----------------- Ajout d'articles --------------------------------------------
 
 // Quand aucune donnée n'a été inscrite

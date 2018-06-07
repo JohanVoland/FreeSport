@@ -49,10 +49,11 @@
                 <li><a href="index.php?action=vue_login" class="w3-bar-item w3-button w3-padding">Login</a></li>
             <?php endif ?>
 
-
             <li><a href="index.php?action=vue_articles" class="w3-bar-item w3-button w3-padding">Articles</a></li>
             <li><a href="index.php?action=vue_ajouter" class="w3-bar-item w3-button w3-padding">Ajouter article</a></li>
             <li><a href="index.php?action=vue_liste_users" class="w3-bar-item w3-button w3-padding">Liste des utilisateurs</a></li>
+            <li><a href="index.php?action=vue_liste_commande" class="w3-bar-item w3-button w3-padding">Liste des commandes</a></li>
+            <li><a href="index.php?action=vue_stock" class="w3-bar-item w3-button w3-padding">Stock</a></li>
         </ul>
     </nav>
 
