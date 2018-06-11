@@ -203,15 +203,52 @@ function getArticle()
     return $getArticle;
 }
 
+//------------------- Fonction lier au panier -------------------------
+
+//afficher le panier
+function afficherPanier()
+{
+    // Connexion à la BD
+    $connexion = getBD();
+
+    // Création de la requête
+    $requete = "SELECT * FROM lignedecommande WHERE commande_idUtilisateur = '".$_SESSION['IDUser']."'";
+
+    // Application de la requête
+    $afficherPanier = $connexion->query($requete);
+
+    return $afficherPanier;
+}
+
+//ajouter au panier un article
 function ajout_panier()
 {
     // connexion à la BD snows
     $connexion = getBD();
 
+    // Récupération de l'ID de l'article
+    $id = $_GET['id'];
+    $quantite= 1;
+
     // Définition de la requête
-    $requete = "SELECT * FROM lignedecommande;";
+    $requete = "INSERT INTO lignedecommande(commande_idUtilisateur,article_idArticle,quantite) VALUES ('".$_SESSION['IDUser']."','".$id."','".$quantite."')";
 
     // Exécution de la requête et renvoi des résultats
     $resultats = $connexion->query($requete);
     return $resultats;
+}
+
+function supp_article_panier()
+{
+    // connexion à la BD snows
+    $connexion = getBD();
+
+    // Récupération de l'ID de l'article
+    $id = $_GET['id'];
+
+    // Création de la requête
+    $requete = "DELETE FROM lignedecommande WHERE idArticle = '".$id."'";
+
+    // Execution de la requête
+    $connexion->query($requete);
 }

@@ -74,6 +74,7 @@ $titre="Free Sport - Articles";
         <strong>Genre : </strong><?=$resultat['nomSexe'];?><br/>
         <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>">modifier</a> <!-- <i class="general foundicon-edit icon"/> -->
         <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>">supprimer</a> <!-- <i class="general foundicon-remove icon"/> -->
+        <a href="index.php?action=vue_ajouter_panier&id=<?=$resultat['idArticle']?>">ajouter au panier</a> <!-- <i class="general foundicon-plus icon"/> -->
     </div>
 
 <?php endforeach;?>

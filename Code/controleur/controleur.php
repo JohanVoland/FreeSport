@@ -56,23 +56,16 @@ function profil()
 
 function panier()
 {
+    $afficherPanier = afficherPanier();
     require 'vue/vue_panier.php';
 }
 
 function ajoutPanier()
 {
-    if (isset($_GET['ID']))
-    {
-        // Si j'ai un ID --> Récupérer les données du snow choisi
-        $resultat = articles();
-        require "vue/vue_ajout_panier.php";
-        //exit();
-    }
-    else
-    {
-        $resultats=articles();
-        require "vue/vue_articles.php";
-    }
+
+    ajout_panier();
+
+    require "vue/vue_accueil.php";
 }
 
 function afficherCommande()
