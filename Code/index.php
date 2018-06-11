@@ -29,10 +29,13 @@ try
             case 'panier' :
                 panier();
                 break;
+            case 'vue_ajouter_panier' :
+                ajoutPanier();
+                break;
             case 'vue_ajouter' :    // Avant d'avoir inscrit des données
                 ajouter();
                 break;
-            case 'ajout' :  // Après avoir inscrit des données
+            case 'ajout' :          // Après avoir inscrit des données
                 ajout();
                 break;
             case 'vue_articles' :

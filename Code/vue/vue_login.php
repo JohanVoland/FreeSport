@@ -30,10 +30,10 @@ ob_start();
                 // Création de la session
                 $_SESSION['login']= $ligne['prenom']." ".$ligne['nom'];
                 $_SESSION['pseudo']= $ligne['pseudo'];
-                $_SESSION['password']= $ligne['password'];
                 $_SESSION['email']= $ligne['email'];
                 $_SESSION['rue']= $ligne['rue'];
                 $_SESSION['adresse']= $ligne['npa']." ".$ligne['ville'];
+                $_SESSION['IDUser']= $ligne['idUtilisateur'];
                 $_SESSION['typeUser']="membre";
             } else
                 echo "Erreur de login/mot de passe";
