@@ -19,7 +19,7 @@ function erreur($e)
 //login
 function login()
 {
-    if (isset ($_POST['pseudo']) && isset ($_POST['fPass']))
+    /*if (isset ($_POST['pseudo']) && isset ($_POST['fPass']))
     {
         $resultats = getLogin($_POST);
         require "vue/vue_login.php";
@@ -33,6 +33,26 @@ function login()
         }
         else
             require "vue/vue_login.php";
+    }*/
+
+    // Si une session existe déjà
+    if (isset($_SESSION['login']))
+    {
+        session_destroy();
+        require "vue/vue_logout.php";
+    }
+    else
+    {
+        // Si des données ont été inscrites
+        if (isset($_POST['pseudo']) && isset($_POST['fPass']))
+        {
+            $resultats = getLogin($_POST);
+            require "vue/vue_login.php";
+        }
+        else
+        {
+            require "vue/vue_login.php";
+        }
     }
 }
 
@@ -44,7 +64,7 @@ function inscription()
 function ajout_membre()
 {
     ajoutMembre($_POST);  // Envoi vers le modèle des contenus issus du formulaire
-    require 'vue/vue_inscription.php';
+    require 'vue/vue_login.php';
 }
 
 function profil()
@@ -66,16 +86,6 @@ function ajoutPanier()
     ajout_panier();
 
     require "vue/vue_accueil.php";
-}
-
-function afficherCommande()
-{
-    require "vue/vue_commande.php";
-}
-
-function stock()
-{
-    require "vue/vue_stock.php";
 }
 
 // ----------------- Ajout d'articles --------------------------------------------
@@ -184,10 +194,21 @@ function modifierArticle()
     }
 }
 
-// ------------- Afficher la liste des utilisateurs --------------------------------
+// ------------- Différentes listes -------------------------------------------
 
 function afficherUsers()
 {
     $afficherUsers = afficherUsersBD();
     require "vue/vue_liste_users.php";
+}
+
+function afficherCommande()
+{
+    require "vue/vue_commande.php";
+}
+
+function stock()
+{
+    $afficherStock = afficherStock();
+    require "vue/vue_stock.php";
 }

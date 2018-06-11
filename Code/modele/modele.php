@@ -230,6 +230,7 @@ function ajout_panier()
     return $resultats;
 }
 
+// Supprimer un article du panier
 function supp_article_panier()
 {
     // connexion à la BD snows
@@ -243,4 +244,21 @@ function supp_article_panier()
 
     // Execution de la requête
     $connexion->query($requete);
+}
+
+// Afficher le stock
+function afficherStock()
+{
+    // Connexion à la BD
+    $connexion = getBD();
+
+    // Création de la requête
+    $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, genre.nom AS nomGenre
+                FROM article INNER JOIN type ON article.idType = type.idType
+                INNER JOIN taille ON article.idTaille = taille.idTaille
+                INNER JOIN genre ON article.idGenre = genre.idGenre";
+
+    // Application de la requête
+    $afficherStock = $connexion->query($requete);
+    return $afficherStock;
 }
