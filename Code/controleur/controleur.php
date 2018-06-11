@@ -96,11 +96,46 @@ function ajouter()
 // Après que des données est été ajoutées
 function ajout()
 {
-    // Ajout de l'article
-    ajouterArticleBD();
 
-    // Redirection vers les articles
-    accueil();
+
+    // Gestion de l'image
+    // Définition des variables
+    $image = basename($_FILES['imageArticle']['name']);
+    $target = "images/upload/";
+    $taille_max = 10000000;
+    $tailleImage = filesize($_FILES['imageArticle']['tmp_name']);
+    $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+    $extension = strrchr($_FILES['imageArticle']['name'], '.');
+
+    // Début de vérifications de sécurité
+    if (!in_array($extension, $extensions)) // Si c'est une mauvaise extension
+    {
+        $erreur = 'Vous devez uploader un fichier de type png, jpg, gif ou jpeg.';
+    }
+    if ($tailleImage>$taille_max) // Si la taille est trop grande
+    {
+        $erreur = 'L\'image est trop grosse.';
+    }
+    if (!isset($erreur)) // S'il n'y a pas d'erreur on l'upload
+    {
+        // On formate le nom du fichier ici
+        $image = strtr($image,
+            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+        $image = preg_replace('/([^.a-z0-9]+)/i', '-', $image);
+        move_uploaded_file($_FILES['imageArticle']['tmp_name'], $target . $image);
+        $_POST['imageArticle'] = $image;
+
+        // Ajout de l'article
+        ajouterArticleBD();
+    }
+    else
+    {
+        $erreur;
+    }
+
+    // Redirection vers la confirmation
+    require "vue/vue_ajouter_article_confirmation.php";
 }
 
 // --------------- Afficher les articles -----------------------------------------

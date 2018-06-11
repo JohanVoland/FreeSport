@@ -29,15 +29,7 @@ function ajouterArticleBD()
     $type = $_POST['type'];
     $taille = $_POST['taille'];
     $sexe = $_POST['sexe'];
-
-    // Gestion de l'image
-
-    // Obtenir le nom de l'image
-    $image = $_FILES['imageArticle']['name'];
-    // Destination du fichier
-    $target = "imageTest/".basename($image);
-    // Déplacement du fichier
-    move_uploaded_file($image, $target);
+    $image = $_POST['imageArticle'];
 
     // Définition de la requête
     $requete = "INSERT INTO article (nom, prix, disponibilite, nombreDispo, image, idType, idTaille, idSexe) VALUES ('$nom', '$prix', '$dateDispo', '$nbreDispo', '$image', '$type', '$taille', '$sexe')";

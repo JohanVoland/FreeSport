@@ -86,7 +86,6 @@ CREATE TABLE `commande` (
 
 CREATE TABLE `lignedecommande` (
   `commande_idCommande` int(11) NOT NULL,
-  `commande_idUtilisateur` int(11) NOT NULL,
   `article_idArticle` int(11) NOT NULL,
   `quantite` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
