@@ -30,7 +30,7 @@ CREATE TABLE `article` (
   `idArticle` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL,
   `prix` int(11) DEFAULT NULL,
-  `disponibilite` int(11) DEFAULT NULL,
+  `disponibilite` DATE DEFAULT NULL,
   `nombreDispo` int(11) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
   `idType` int(11) NOT NULL,
