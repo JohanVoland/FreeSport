@@ -42,7 +42,7 @@ $titre="Free Sport - Ajouter un article";
 
                 <td>Genre :</td>
                 <td>
-                    <select name="sexe">
+                    <select name="genre">
                         <option value="1">Homme</option>
                         <option value="2">Femme</option>
                     </select>

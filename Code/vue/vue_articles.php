@@ -71,7 +71,7 @@ $titre="Free Sport - Articles";
         <img src="images/upload/<?=$resultat['image'];?>" width="50%", height="50%"><br/>
         <strong>Type : </strong><?=$resultat['nomType'];?><br/>
         <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
-        <strong>Genre : </strong><?=$resultat['nomSexe'];?><br/>
+        <strong>Genre : </strong><?=$resultat['nomGenre'];?><br/>
         <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>">modifier</a> <!-- <i class="general foundicon-edit icon"/> -->
         <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>">supprimer</a> <!-- <i class="general foundicon-remove icon"/> -->
         <a href="index.php?action=vue_ajouter_panier&id=<?=$resultat['idArticle']?>">ajouter au panier</a> <!-- <i class="general foundicon-plus icon"/> -->

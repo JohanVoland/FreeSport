@@ -28,11 +28,11 @@ function ajouterArticleBD()
     $nbreDispo = $_POST['nbreDispo'];
     $type = $_POST['type'];
     $taille = $_POST['taille'];
-    $sexe = $_POST['sexe'];
+    $genre = $_POST['genre'];
     $image = $_POST['imageArticle'];
 
     // Définition de la requête
-    $requete = "INSERT INTO article (nom, prix, disponibilite, nombreDispo, image, idType, idTaille, idSexe) VALUES ('$nom', '$prix', '$dateDispo', '$nbreDispo', '$image', '$type', '$taille', '$sexe')";
+    $requete = "INSERT INTO article (nom, prix, disponibilite, nombreDispo, image, idType, idTaille, idGenre) VALUES ('$nom', '$prix', '$dateDispo', '$nbreDispo', '$image', '$type', '$taille', '$genre')";
 
     // Application de la requête
     $connexion->exec($requete);
@@ -50,26 +50,26 @@ function articles()
 
     // Si aucun filtre n'a été appliqué
     if ($type == "#" && $taille == "#") {
-        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
+        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, genre.nom AS nomGenre
                 FROM article INNER JOIN type ON article.idType = type.idType
                 INNER JOIN taille ON article.idTaille = taille.idTaille
-                INNER JOIN sexe ON article.idSexe = sexe.idSexe";
+                INNER JOIN genre ON article.idGenre = genre.idGenre";
     }
     // Si tous les filtre ont été appliqués
     else if ($type !== "#" && $taille !== "#")
     {
-        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
+        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, genre.nom AS nomGenre
                 FROM article INNER JOIN type ON article.idType = type.idType
                 INNER JOIN taille ON article.idTaille = taille.idTaille
-                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE article.idType = '".$type."' AND article.idTaille = '".$taille."'";
+                INNER JOIN genre ON article.idGenre = genre.idGenre WHERE article.idType = '".$type."' AND article.idTaille = '".$taille."'";
     }
     // Si 1 filtre a été appliqué
     else if ($type !== "#" || $taille !== "#")
     {
-        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe
+        $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, genre.nom AS nomGenre
                 FROM article INNER JOIN type ON article.idType = type.idType
                 INNER JOIN taille ON article.idTaille = taille.idTaille
-                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE article.idType = '".$type."' OR article.idTaille = '".$taille."'";
+                INNER JOIN genre ON article.idGenre = genre.idGenre WHERE article.idType = '".$type."' OR article.idTaille = '".$taille."'";
     }
 
     // Application de la requête
@@ -149,10 +149,10 @@ function modifierArticleBD()
     $image = $_POST['imageArticle'];
     $type = $_POST['type'];
     $taille = $_POST['taille'];
-    $sexe = $_POST['sexe'];
+    $genre = $_POST['genre'];
 
     // Création de la requête
-    $requete = "UPDATE article SET idArticle = '".$id."', nom = '".$nom."', prix = '".$prix."', disponibilite = '".$dispo."', nombreDispo = '".$nbreDispo."', image = '".$image."', idType = '".$type."', idTaille = '".$taille."', idSexe = '".$sexe."' WHERE idArticle = '".$id."'";
+    $requete = "UPDATE article SET idArticle = '".$id."', nom = '".$nom."', prix = '".$prix."', disponibilite = '".$dispo."', nombreDispo = '".$nbreDispo."', image = '".$image."', idType = '".$type."', idTaille = '".$taille."', idGenre = '".$genre."' WHERE idArticle = '".$id."'";
 
     // Application de la requete
     $connexion->exec($requete);
@@ -184,10 +184,10 @@ function getArticle()
     $id = $_GET['id'];
 
     // Création de la requête
-    $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, sexe.nom AS nomSexe 
+    $requete = "SELECT article.idArticle, article.nom, article.prix, article.disponibilite, article.nombreDispo, article.image, type.nom AS nomType, taille.nom AS nomTaille, genre.nom AS nomGenre 
                 FROM article INNER JOIN type ON article.idType = type.idType 
                 INNER JOIN taille ON article.idTaille = taille.idTaille 
-                INNER JOIN sexe ON article.idSexe = sexe.idSexe WHERE idArticle = '".$id."'";
+                INNER JOIN genre ON article.idGenre = genre.idGenre WHERE idArticle = '".$id."'";
 
     // Application de la reuquête
     $getArticle = $connexion->query($requete);
