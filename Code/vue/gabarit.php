@@ -36,7 +36,9 @@
         <ul class="nav">
             <?php if (isset($_SESSION['login'])) :?>
                 <li><a href="index.php?action=profil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['login']; ?></a></li>
-                <li><a href="index.php?action=panier"><img src="images/panier.jpg"></a></li>
+                <?php if ($_SESSION['typeUser'] == "membre") : ?>
+                    <li><a href="index.php?action=panier"><img src="images/panier.jpg"></a></li>
+                <?php endif; ?>
             <?php else : ?>
                 <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Bonjour visiteur</a></li>
             <?php endif ?>
@@ -44,6 +46,7 @@
             <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Aller à l'accueil</a></li>
             <li><a href="index.php?action=vue_inscription" class="w3-bar-item w3-button w3-padding">S'inscrire</a></li>
 
+            <!-- Gestion du login/logout -->
             <?php if (isset($_SESSION['login'])) :?>
                 <li><a href="index.php?action=vue_login" class="w3-bar-item w3-button w3-padding">Logout</a></li>
             <?php else : ?>
@@ -51,10 +54,22 @@
             <?php endif ?>
 
             <li><a href="index.php?action=vue_articles" class="w3-bar-item w3-button w3-padding">Articles</a></li>
-            <li><a href="index.php?action=vue_ajouter" class="w3-bar-item w3-button w3-padding">Ajouter article</a></li>
-            <li><a href="index.php?action=vue_liste_users" class="w3-bar-item w3-button w3-padding">Liste des utilisateurs</a></li>
-            <li><a href="index.php?action=vue_liste_commande" class="w3-bar-item w3-button w3-padding">Liste des commandes</a></li>
-            <li><a href="index.php?action=vue_stock" class="w3-bar-item w3-button w3-padding">Stock</a></li>
+
+            <!-- Afficher uniquement si on est le resp des ventes ou l'admin -->
+            <?php if (@$_SESSION['typeUser'] == "responsable" || @$_SESSION['typeUser'] == "admin") : ?>
+                <li><a href="index.php?action=vue_ajouter" class="w3-bar-item w3-button w3-padding">Ajouter article</a></li>
+            <?php endif; ?>
+
+            <!-- Afficher uniquement si on est l'administrateur -->
+            <?php if (@$_SESSION['typeUser'] == "admin") : ?>
+                <li><a href="index.php?action=vue_liste_users" class="w3-bar-item w3-button w3-padding">Liste des utilisateurs</a></li>
+            <?php endif; ?>
+
+            <!-- Afficher uniquement si on est le resp des ventes ou l'admin -->
+            <?php if (@$_SESSION['typeUser'] == "responsable" || @$_SESSION['typeUser'] == "admin") : ?>
+                <li><a href="index.php?action=vue_liste_commande" class="w3-bar-item w3-button w3-padding">Liste des commandes</a></li>
+                <li><a href="index.php?action=vue_stock" class="w3-bar-item w3-button w3-padding">Stock</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 
