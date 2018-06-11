@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 04 Juin 2018 à 06:04
+-- Généré le :  Lun 11 Juin 2018 à 11:42
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -30,19 +30,15 @@ CREATE TABLE `article` (
   `idArticle` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL,
   `prix` int(11) DEFAULT NULL,
-  `disponibilite` date DEFAULT NULL,
+  `disponibilite` int(11) DEFAULT NULL,
   `nombreDispo` int(11) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
   `idType` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
-  `idSexe` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idGenre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `article`
---
-
-INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idSexe`) VALUES
+INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idGenre`) VALUES
 (1, 'Test', 124, '0004-03-12', 123, 'wrere', 2, 2, 1),
 (2, 'test 2', 99, '2018-05-25', 5, 'image', 4, 3, 2);
 
@@ -55,11 +51,7 @@ INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo
 CREATE TABLE `categorie` (
   `idCategorie` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `categorie`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
 (1, 'utilisateur'),
@@ -76,7 +68,22 @@ CREATE TABLE `commande` (
   `idCommande` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `genre`
+--
+
+CREATE TABLE `genre` (
+  `idGenre` int(11) NOT NULL,
+  `nom` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `genre` (`idGenre`, `nom`) VALUES
+(1, 'homme'),
+(2, 'femme');
 
 -- --------------------------------------------------------
 
@@ -86,28 +93,10 @@ CREATE TABLE `commande` (
 
 CREATE TABLE `lignedecommande` (
   `commande_idCommande` int(11) NOT NULL,
+  `commande_idUtilisateur` int(11) NOT NULL,
   `article_idArticle` int(11) NOT NULL,
-  `quantite` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `sexe`
---
-
-CREATE TABLE `sexe` (
-  `idSexe` int(11) NOT NULL,
-  `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `sexe`
---
-
-INSERT INTO `sexe` (`idSexe`, `nom`) VALUES
-(1, 'homme'),
-(2, 'femme');
+  `quantité` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -118,11 +107,7 @@ INSERT INTO `sexe` (`idSexe`, `nom`) VALUES
 CREATE TABLE `taille` (
   `idTaille` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `taille`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `taille` (`idTaille`, `nom`) VALUES
 (1, 'S'),
@@ -139,11 +124,7 @@ INSERT INTO `taille` (`idTaille`, `nom`) VALUES
 CREATE TABLE `type` (
   `idType` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `type`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `type` (`idType`, `nom`) VALUES
 (1, 'T-shirt'),
@@ -168,11 +149,7 @@ CREATE TABLE `utilisateur` (
   `npa` int(11) DEFAULT NULL,
   `idCategorie` int(11) NOT NULL,
   `ville` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `utilisateur`
---
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password`, `email`, `rue`, `npa`, `idCategorie`, `ville`) VALUES
 (1, 'administrateur', '-', '-', 1234, '-', '-', 0, 3, '-'),
@@ -187,10 +164,10 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password
 -- Index pour la table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`idArticle`,`idType`,`idTaille`,`idSexe`),
+  ADD PRIMARY KEY (`idArticle`,`idType`,`idTaille`,`idGenre`),
   ADD KEY `fk_article_type_idx` (`idType`),
   ADD KEY `fk_article_taille1_idx` (`idTaille`),
-  ADD KEY `fk_article_sexe1_idx` (`idSexe`);
+  ADD KEY `fk_article_sexe1_idx` (`idGenre`);
 
 --
 -- Index pour la table `categorie`
@@ -206,18 +183,18 @@ ALTER TABLE `commande`
   ADD KEY `fk_commande_utilisateur1_idx` (`idUtilisateur`);
 
 --
+-- Index pour la table `genre`
+--
+ALTER TABLE `genre`
+  ADD PRIMARY KEY (`idGenre`);
+
+--
 -- Index pour la table `lignedecommande`
 --
 ALTER TABLE `lignedecommande`
   ADD PRIMARY KEY (`commande_idCommande`,`commande_idUtilisateur`,`article_idArticle`),
   ADD KEY `fk_commande_has_article_article1_idx` (`article_idArticle`),
   ADD KEY `fk_commande_has_article_commande1_idx` (`commande_idCommande`,`commande_idUtilisateur`);
-
---
--- Index pour la table `sexe`
---
-ALTER TABLE `sexe`
-  ADD PRIMARY KEY (`idSexe`);
 
 --
 -- Index pour la table `taille`
@@ -246,37 +223,37 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
   MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `sexe`
+-- AUTO_INCREMENT pour la table `genre`
 --
-ALTER TABLE `sexe`
-  MODIFY `idSexe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `genre`
+  MODIFY `idGenre` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `taille`
 --
 ALTER TABLE `taille`
-  MODIFY `idTaille` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTaille` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `type`
 --
 ALTER TABLE `type`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
 --
@@ -285,7 +262,7 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `fk_article_sexe1` FOREIGN KEY (`idSexe`) REFERENCES `sexe` (`idSexe`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_article_sexe1` FOREIGN KEY (`idGenre`) REFERENCES `genre` (`idGenre`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_article_taille1` FOREIGN KEY (`idTaille`) REFERENCES `taille` (`idTaille`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_article_type` FOREIGN KEY (`idType`) REFERENCES `type` (`idType`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
