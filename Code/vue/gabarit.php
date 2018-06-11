@@ -21,6 +21,7 @@
 
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="assets/js/jquery.min.js" rel="stylesheet">
     </head>
 
     <body class="w3-content">
@@ -112,18 +113,36 @@
 
     <script>
         // Accordion
-        function myAccFunc() {
-            var x = document.getElementById("demoAcc");
+        function myAccFunc1() {
+            var x = document.getElementById("demoAcc1");
             if (x.className.indexOf("w3-show") == -1) {
                 x.className += " w3-show";
             } else {
                 x.className = x.className.replace(" w3-show", "");
             }
         }
-
         // Click on the "Jeans" link on page load to open the accordion for demo purposes
-        document.getElementById("myBtn").click();
+        document.getElementById("myBtn1").click();
 
+        function myAccFunc2() {
+            var x = document.getElementById("demoAcc2");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        document.getElementById("myBtn2").click();
+
+        function myAccFunc3() {
+            var x = document.getElementById("demoAcc3");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        document.getElementById("myBtn3").click();
 
         // Script to open and close sidebar
         function w3_open() {

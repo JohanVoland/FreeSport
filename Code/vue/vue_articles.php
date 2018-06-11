@@ -35,28 +35,40 @@ $titre="Free Sport - Articles";
 
     <!-- Filtre -->
     <form class="form" method="post" action="index.php?action=vue_articles">
-        Type d'article :
-        <select name="filtreType">
-            <option value="#">Tout</option>
-            <option value="1">T-shirt</option>
-            <option value="2">Veste</option>
-            <option value="3">Chaussure</option>
-            <option value="4">Training</option>
-        </select>
-        Taille :
-        <select name="filtreTaille">
-            <option value="#">Tout</option>
-            <option value="1">S</option>
-            <option value="2">M</option>
-            <option value="3">L</option>
-            <option value="4">XL</option>
-        </select>
-        <!--Genre :
-        <select name="filtreGenre">
-            <option value="#">Tout</option>
-            <option value="1">Homme</option>
-            <option value="2">Femme</option>
-        </select>-->
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a onclick="myAccFunc1()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn1">
+                Type d'article <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button">Tout</a>
+                <a href="#" class="w3-bar-item w3-button">T-shirt</a>
+                <a href="#" class="w3-bar-item w3-button">Veste</a>
+                <a href="#" class="w3-bar-item w3-button">Chaussure</a>
+                <a href="#" class="w3-bar-item w3-button">Training</a>
+            </div>
+        </div>
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a onclick="myAccFunc2()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn2">
+                Taille <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button">Tout</a>
+                <a href="#" class="w3-bar-item w3-button">S</a>
+                <a href="#" class="w3-bar-item w3-button">M</a>
+                <a href="#" class="w3-bar-item w3-button">L</a>
+                <a href="#" class="w3-bar-item w3-button">XL</a>
+            </div>
+        </div>
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a onclick="myAccFunc3()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn3">
+                Genre <i class="fa fa-caret-down"></i>
+            </a>
+            <div id="demoAcc3" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+                <a href="#" class="w3-bar-item w3-button">Tout</a>
+                <a href="#" class="w3-bar-item w3-button">Homme</a>
+                <a href="#" class="w3-bar-item w3-button">Femme</a>
+            </div>
+        </div>
         <input class="btn" type="submit" value="Appliquer">
     </form>
 
