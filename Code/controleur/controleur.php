@@ -76,11 +76,17 @@ function profil()
 function panier()
 {
     $afficherPanier = afficherPanier();
+    //$afficherPanier = afficherPanier();
+    $id = $_GET['id'];
+    $quantite= 1;
+
+    $idArticle = array($id);
+    $nbr = array($quantite);
+
+    $_SESSION['panier'] = array_multisort($idArticle, $nbr);
+
     require 'vue/vue_panier.php';
 }
-
-function ajoutPanier()
-{
 
     ajout_panier();
 

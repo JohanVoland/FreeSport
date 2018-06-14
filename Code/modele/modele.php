@@ -200,16 +200,13 @@ function getArticle()
 //afficher le panier
 function afficherPanier()
 {
-    // Connexion à la BD
-    $connexion = getBD();
+    $id = $_GET['id'];
+    //$idarticle = array($id);
 
-    // Création de la requête
-    $requete = "SELECT * FROM lignedecommande WHERE commande_idUtilisateur = '".$_SESSION['IDUser']."'";
+    $quantite= 1;
+    //$nbr = array($quantite);
 
-    // Application de la requête
-    $afficherPanier = $connexion->query($requete);
-
-    return $afficherPanier;
+    $_SESSION['panier'] = array(array($id), array($quantite));
 }
 
 //ajouter au panier un article
