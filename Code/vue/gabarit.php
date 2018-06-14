@@ -35,7 +35,7 @@
         <br/>
         <ul class="nav">
             <?php if (isset($_SESSION['login'])) :?>
-                <li><a href="index.php?action=profil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['login']; ?></a></li>
+                <li><a href="index.php?action=profil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['pseudo']; ?></a></li>
                 <?php if ($_SESSION['typeUser'] == "membre") : ?>
                     <li><a href="index.php?action=panier"><img src="images/panier.jpg"></a></li>
                 <?php endif; ?>

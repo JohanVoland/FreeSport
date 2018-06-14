@@ -38,8 +38,7 @@ function login()
     // Si une session existe déjà
     if (isset($_SESSION['login']))
     {
-        session_destroy();
-        require "vue/vue_logout.php";
+        require "vue/vue_login.php";
     }
     else
     {
