@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 11 Juin 2018 à 11:42
+-- Généré le :  Jeu 14 Juin 2018 à 06:19
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -30,17 +30,12 @@ CREATE TABLE `article` (
   `idArticle` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL,
   `prix` int(11) DEFAULT NULL,
-  `disponibilite` DATE DEFAULT NULL,
-  `nombreDispo` int(11) DEFAULT NULL,
+  `disponibilite` int(11) DEFAULT NULL,
   `image` varchar(45) DEFAULT NULL,
   `idType` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
   `idGenre` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idGenre`) VALUES
-(1, 'Test', 124, '0004-03-12', 123, 'wrere', 2, 2, 1),
-(2, 'test 2', 99, '2018-05-25', 5, 'image', 4, 3, 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -51,12 +46,7 @@ INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo
 CREATE TABLE `categorie` (
   `idCategorie` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
-(1, 'utilisateur'),
-(2, 'responsable des ventes'),
-(3, 'administrateur');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -68,7 +58,7 @@ CREATE TABLE `commande` (
   `idCommande` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -79,11 +69,7 @@ CREATE TABLE `commande` (
 CREATE TABLE `genre` (
   `idGenre` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `genre` (`idGenre`, `nom`) VALUES
-(1, 'homme'),
-(2, 'femme');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -92,11 +78,11 @@ INSERT INTO `genre` (`idGenre`, `nom`) VALUES
 --
 
 CREATE TABLE `lignedecommande` (
+  `idLigneDeCommande` int(11) NOT NULL,
   `commande_idCommande` int(11) NOT NULL,
-  `commande_idUtilisateur` int(11) NOT NULL,
   `article_idArticle` int(11) NOT NULL,
   `quantité` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -107,13 +93,7 @@ CREATE TABLE `lignedecommande` (
 CREATE TABLE `taille` (
   `idTaille` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `taille` (`idTaille`, `nom`) VALUES
-(1, 'S'),
-(2, 'M'),
-(3, 'L'),
-(4, 'XL');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -124,13 +104,7 @@ INSERT INTO `taille` (`idTaille`, `nom`) VALUES
 CREATE TABLE `type` (
   `idType` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `type` (`idType`, `nom`) VALUES
-(1, 'T-shirt'),
-(2, 'Veste'),
-(3, 'Chaussure'),
-(4, 'Training');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -149,12 +123,7 @@ CREATE TABLE `utilisateur` (
   `npa` int(11) DEFAULT NULL,
   `idCategorie` int(11) NOT NULL,
   `ville` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password`, `email`, `rue`, `npa`, `idCategorie`, `ville`) VALUES
-(1, 'administrateur', '-', '-', 1234, '-', '-', 0, 3, '-'),
-(2, 'responsable des ventes', '-', '-', 1234, '-', '-', 0, 2, '-'),
-(3, 'user1', 'Smith', 'Johnn', 1234, 'JohnnSmith@gmail.com', 'rue du pif', 123, 1, 'Ville-random');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Index pour les tables exportées
@@ -169,11 +138,20 @@ ALTER TABLE `article`
   ADD KEY `fk_article_taille1_idx` (`idTaille`),
   ADD KEY `fk_article_sexe1_idx` (`idGenre`);
 
+INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idGenre`) VALUES
+(1, 'Test', 124, '0004-03-12', 123, 'wrere', 2, 2, 1),
+(2, 'test 2', 99, '2018-05-25', 5, 'image', 4, 3, 2);
+
 --
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`idCategorie`);
+
+INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
+(1, 'utilisateur'),
+(2, 'responsable des ventes'),
+(3, 'administrateur');
 
 --
 -- Index pour la table `commande`
@@ -188,13 +166,17 @@ ALTER TABLE `commande`
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`idGenre`);
 
+INSERT INTO `genre` (`idGenre`, `nom`) VALUES
+(1, 'homme'),
+(2, 'femme');
+
 --
 -- Index pour la table `lignedecommande`
 --
 ALTER TABLE `lignedecommande`
-  ADD PRIMARY KEY (`commande_idCommande`,`commande_idUtilisateur`,`article_idArticle`),
+  ADD PRIMARY KEY (`idLigneDeCommande`,`commande_idCommande`,`article_idArticle`),
   ADD KEY `fk_commande_has_article_article1_idx` (`article_idArticle`),
-  ADD KEY `fk_commande_has_article_commande1_idx` (`commande_idCommande`,`commande_idUtilisateur`);
+  ADD KEY `fk_commande_has_article_commande1_idx` (`commande_idCommande`);
 
 --
 -- Index pour la table `taille`
@@ -202,11 +184,23 @@ ALTER TABLE `lignedecommande`
 ALTER TABLE `taille`
   ADD PRIMARY KEY (`idTaille`);
 
+INSERT INTO `taille` (`idTaille`, `nom`) VALUES
+(1, 'S'),
+(2, 'M'),
+(3, 'L'),
+(4, 'XL');
+
 --
 -- Index pour la table `type`
 --
 ALTER TABLE `type`
   ADD PRIMARY KEY (`idType`);
+
+INSERT INTO `type` (`idType`, `nom`) VALUES
+(1, 'T-shirt'),
+(2, 'Veste'),
+(3, 'Chaussure'),
+(4, 'Training');
 
 --
 -- Index pour la table `utilisateur`
@@ -214,6 +208,11 @@ ALTER TABLE `type`
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`idUtilisateur`,`idCategorie`),
   ADD KEY `fk_utilisateur_categorie1_idx` (`idCategorie`);
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password`, `email`, `rue`, `npa`, `idCategorie`, `ville`) VALUES
+(1, 'administrateur', '-', '-', 1234, '-', '-', 0, 3, '-'),
+(2, 'responsable des ventes', '-', '-', 1234, '-', '-', 0, 2, '-'),
+(3, 'user1', 'Smith', 'Johnn', 1234, 'JohnnSmith@gmail.com', 'rue du pif', 123, 1, 'Ville-random');
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -239,6 +238,11 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `genre`
   MODIFY `idGenre` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `lignedecommande`
+--
+ALTER TABLE `lignedecommande`
+  MODIFY `idLigneDeCommande` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `taille`
 --
@@ -277,7 +281,7 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `lignedecommande`
   ADD CONSTRAINT `fk_commande_has_article_article1` FOREIGN KEY (`article_idArticle`) REFERENCES `article` (`idArticle`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_commande_has_article_commande1` FOREIGN KEY (`commande_idCommande`,`commande_idUtilisateur`) REFERENCES `commande` (`idCommande`, `idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_commande_has_article_commande1` FOREIGN KEY (`commande_idCommande`) REFERENCES `commande` (`idCommande`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `utilisateur`
