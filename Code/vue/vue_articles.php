@@ -43,7 +43,6 @@ $titre="Free Sport - Articles";
                 <a href="#" class="w3-bar-item w3-button">Tout</a>
                 <a href="#" class="w3-bar-item w3-button">T-shirt</a>
                 <a href="#" class="w3-bar-item w3-button">Veste</a>
-                <a href="#" class="w3-bar-item w3-button">Chaussure</a>
                 <a href="#" class="w3-bar-item w3-button">Training</a>
             </div>
         </div>

@@ -86,7 +86,7 @@ function panier()
     $_SESSION['panier'] = array_multisort($idArticle, $nbr);
 
     require 'vue/vue_panier.php';
-}
+
 
     ajout_panier();
 
