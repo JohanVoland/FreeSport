@@ -41,7 +41,22 @@ function login()
 
 function inscription()
 {
-    require "vue/vue_inscription.php";
+    // Si des données ont été inscrites
+    if (isset($_POST['password']) && isset($_POST['passwordConfirm']))
+    {
+        // Test si les mots de passe sont corrects
+        if ($_POST['password'] == $_POST['passwordConfirm']) {
+            ajout_membre($_POST);
+            require 'vue/vue_login.php';
+        }
+        else {
+            require 'vue/vue_inscriptionErreur.php';
+        }
+    }
+    else
+    {
+        require 'vue/vue_inscription.php';
+    }
 }
 
 function ajout_membre()

@@ -11,47 +11,54 @@ ob_start();
         if (isset($resultats))
         {
             // les données dans le formulaire sont exactes, mets les données de l'utilisateur  dans des variables SESSION
-            $ligne=$resultats->fetch();
-            // Test pour savoir si on est admin
-            if ($ligne['idCategorie']==3)
-            {
-                echo "Bonjour. Vous êtes connecté en tant qu'administrateur.";
-                // Création de la session
-                //$_SESSION['login']=$ligne['pseudo'];
-                $_SESSION['login']= $ligne['prenom']." ".$ligne['nom'];
-                $_SESSION['pseudo']= $ligne['pseudo'];
-                $_SESSION['email']= $ligne['email'];
-                $_SESSION['rue']= $ligne['rue'];
-                $_SESSION['adresse']= $ligne['npa']." ".$ligne['ville'];
-                $_SESSION['typeUser']="admin";
-            } else if ($ligne['idCategorie']==2)
-            {
-                echo "Bonjour. Vous êtes connecté en tant que responsable des ventes.";
-                //$_SESSION['login']=$ligne['pseudo'];
-                $_SESSION['login']= $ligne['prenom']." ".$ligne['nom'];
-                $_SESSION['pseudo']= $ligne['pseudo'];
-                $_SESSION['email']= $ligne['email'];
-                $_SESSION['rue']= $ligne['rue'];
-                $_SESSION['adresse']= $ligne['npa']." ".$ligne['ville'];
-                $_SESSION['typeUser']="responsable";
-            }else if ($ligne['idCategorie']==1)
-            {
-                echo "Bonjour ".$ligne['prenom']." ".$ligne['nom'].". Vous êtes bien connecté en tant que ".$ligne['pseudo']." ";
-                // Création de la session
-                $_SESSION['login']= $ligne['prenom']." ".$ligne['nom'];
-                $_SESSION['pseudo']= $ligne['pseudo'];
-                $_SESSION['email']= $ligne['email'];
-                $_SESSION['rue']= $ligne['rue'];
-                $_SESSION['adresse']= $ligne['npa']." ".$ligne['ville'];
-                $_SESSION['IDUser']= $ligne['idUtilisateur'];
-                $_SESSION['typeUser']="membre";
-            } else
-                echo "Erreur de login/mot de passe";
+            $ligne = $resultats->fetch();
 
+            // Test le mot de passe
+            if (password_verify($_POST['fPass'],$ligne['password'])){
+
+                // Test des différentes catégories
+                if ($ligne['idCategorie'] == 3) {
+                    echo "Bonjour. Vous êtes connecté en tant qu'administrateur.";
+                    // Création de la session
+                    //$_SESSION['login']=$ligne['pseudo'];
+                    $_SESSION['login'] = $ligne['prenom'] . " " . $ligne['nom'];
+                    $_SESSION['pseudo'] = $ligne['pseudo'];
+                    $_SESSION['email'] = $ligne['email'];
+                    $_SESSION['rue'] = $ligne['rue'];
+                    $_SESSION['adresse'] = $ligne['npa'] . " " . $ligne['ville'];
+                    $_SESSION['typeUser'] = "admin";
+                } else if ($ligne['idCategorie'] == 2) {
+                    echo "Bonjour. Vous êtes connecté en tant que responsable des ventes.";
+                    //$_SESSION['login']=$ligne['pseudo'];
+                    $_SESSION['login'] = $ligne['prenom'] . " " . $ligne['nom'];
+                    $_SESSION['pseudo'] = $ligne['pseudo'];
+                    $_SESSION['email'] = $ligne['email'];
+                    $_SESSION['rue'] = $ligne['rue'];
+                    $_SESSION['adresse'] = $ligne['npa'] . " " . $ligne['ville'];
+                    $_SESSION['typeUser'] = "responsable";
+                } else if ($ligne['idCategorie'] == 1) {
+                    echo "Bonjour " . $ligne['prenom'] . " " . $ligne['nom'] . ". Vous êtes bien connecté en tant que " . $ligne['pseudo'] . " ";
+                    // Création de la session
+                    $_SESSION['login'] = $ligne['prenom'] . " " . $ligne['nom'];
+                    $_SESSION['pseudo'] = $ligne['pseudo'];
+                    $_SESSION['email'] = $ligne['email'];
+                    $_SESSION['rue'] = $ligne['rue'];
+                    $_SESSION['adresse'] = $ligne['npa'] . " " . $ligne['ville'];
+                    $_SESSION['IDUser'] = $ligne['idUtilisateur'];
+                    $_SESSION['typeUser'] = "membre";
+                } else {
+                    // Si l'on n'appartient à aucune catégorie
+                    echo "Erreur de login.";
+                }
+            }
+            else {
+                // Si le mot de passe est faux
+                echo "Erreur de mot de passe.";
+            }
         }
         else
         {
-            // Si l'utilisateur est connecté, détruit sa session
+            // Si l'utilisateur déjà est connecté, détruit sa session
             if (isset($_SESSION['login']))
             {
                 session_destroy();

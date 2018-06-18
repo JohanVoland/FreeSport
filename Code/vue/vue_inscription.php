@@ -7,7 +7,7 @@ ob_start();
 
     <h2>Inscription</h2>
 
-    <form class="form" method="POST" action="index.php?action=enregistrer">
+    <form class="form" method="POST" action="index.php?action=vue_inscription">
         <table class="table">
             <tr>
                 <td>Nom : </td>
@@ -33,17 +33,20 @@ ob_start();
                     <?php endif ?>
                 </td>
 
+                <td>Confirmer le mot de passe</td>
+                <td><input type="password" name="passwordConfirm" required></td>
+            </tr>
+            <tr>
                 <td>Rue : </td>
                 <td><input type="text" name="rue" value="<?= @$_POST['rue']; ?>" required></td>
-            </tr>
-            <tr>
+
                 <td>NPA : </td>
                 <td><input type="text" name="npa" value="<?= @$_POST['npa']; ?>" required></td>
-
-                <td>Ville : </td>
-                <td><input type="text" name="ville" value="<?= @$_POST['ville']; ?>" required></td>
             </tr>
             <tr>
+                <td>Ville : </td>
+                <td><input type="text" name="ville" value="<?= @$_POST['ville']; ?>" required></td>
+
                 <td><input class="btn" type="submit" value="Confirmer"/></td>
                 <td></td><td></td><td></td>
             </tr>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 14 Juin 2018 à 06:19
+-- Généré le :  Lun 18 Juin 2018 à 13:02
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -38,6 +38,17 @@ CREATE TABLE `article` (
   `idGenre` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `article`
+--
+
+INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idGenre`) VALUES
+(3, 'Bas Femme - DeQualitÃ©', 79, '2018-06-30', 100, 'bas-femme1.jpg', 4, 2, 2),
+(4, 'Bas Femme - AddaptÃ©sAuSport', 45, '2018-06-30', 120, 'bas2.jpg', 1, 1, 1),
+(5, 'Ensemble Femme', 120, '2018-06-30', 120, 'ensemble-femme.png', 2, 2, 2),
+(6, 'Ensemble Homme', 120, '2018-06-30', 120, 'ensemble-homme.jpg', 2, 2, 1),
+(7, 'test', 324, '2018-06-21', 4324, 'Desert.jpg', 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +59,15 @@ CREATE TABLE `categorie` (
   `idCategorie` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `categorie`
+--
+
+INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
+(1, 'utilisateur'),
+(2, 'responsable des ventes'),
+(3, 'administrateur');
 
 -- --------------------------------------------------------
 
@@ -71,6 +91,14 @@ CREATE TABLE `genre` (
   `idGenre` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `genre`
+--
+
+INSERT INTO `genre` (`idGenre`, `nom`) VALUES
+(1, 'homme'),
+(2, 'femme');
 
 -- --------------------------------------------------------
 
@@ -96,6 +124,16 @@ CREATE TABLE `taille` (
   `nom` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `taille`
+--
+
+INSERT INTO `taille` (`idTaille`, `nom`) VALUES
+(1, 'S'),
+(2, 'M'),
+(3, 'L'),
+(4, 'XL');
+
 -- --------------------------------------------------------
 
 --
@@ -106,6 +144,16 @@ CREATE TABLE `type` (
   `idType` int(11) NOT NULL,
   `nom` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `type`
+--
+
+INSERT INTO `type` (`idType`, `nom`) VALUES
+(1, 'T-shirt'),
+(2, 'Veste'),
+(3, 'Chaussure'),
+(4, 'Training');
 
 -- --------------------------------------------------------
 
@@ -118,13 +166,23 @@ CREATE TABLE `utilisateur` (
   `pseudo` varchar(45) DEFAULT NULL,
   `nom` varchar(45) DEFAULT NULL,
   `prenom` varchar(45) DEFAULT NULL,
-  `password` int(11) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `rue` varchar(45) DEFAULT NULL,
   `npa` int(11) DEFAULT NULL,
   `idCategorie` int(11) NOT NULL,
   `ville` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password`, `email`, `rue`, `npa`, `idCategorie`, `ville`) VALUES
+(6, 'administrateur', '-', '-', '$2y$10$PNfbn6BoV82eArMt1ggHZ.ICX6G2TC4qodfSuLOekxwizA79PyXIi', 'FreeSportContact@gmail.com', '-', 0, 3, '-'),
+(7, 'responsable des ventes', '-', '-', '$2y$10$O3chdTH73yv0jrFHtblXH.MJY4rloS6id/oAoaxDQnVZHsIy49huC', 'FreeSportContact@gmail.com', '-', 0, 2, '-'),
+(8, 'johan voland', 'voland', 'johan', '$2y$10$K/UxmPZOb4ko9PG2FQSscutxD55.TZL6C5CvSy7x7zXfjs8N.plyi', 'johan.voland@cpnv.ch', 'champ derrey 4', 1083, 1, 'MÃ©ziÃ¨res'),
+(9, 'UserTest', 'tzrzr', 'trzrt', '$2y$10$ioJH4UAKs7lpFxlZOfEp5evRZOcIS4BZHvGc0tQVb1VpN.XOpUgGe', 'User.Test@cpnv.ch', 'champ derrey 4', 435, 1, 'ste. croix');
 
 --
 -- Index pour les tables exportées
@@ -139,20 +197,11 @@ ALTER TABLE `article`
   ADD KEY `fk_article_taille1_idx` (`idTaille`),
   ADD KEY `fk_article_sexe1_idx` (`idGenre`);
 
-INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idGenre`) VALUES
-(1, 'Test', 124, '0004-03-12', 123, 'wrere', 2, 2, 1),
-(2, 'test 2', 99, '2018-05-25', 5, 'image', 4, 3, 2);
-
 --
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`idCategorie`);
-
-INSERT INTO `categorie` (`idCategorie`, `nom`) VALUES
-(1, 'utilisateur'),
-(2, 'responsable des ventes'),
-(3, 'administrateur');
 
 --
 -- Index pour la table `commande`
@@ -166,10 +215,6 @@ ALTER TABLE `commande`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`idGenre`);
-
-INSERT INTO `genre` (`idGenre`, `nom`) VALUES
-(1, 'homme'),
-(2, 'femme');
 
 --
 -- Index pour la table `lignedecommande`
@@ -185,23 +230,11 @@ ALTER TABLE `lignedecommande`
 ALTER TABLE `taille`
   ADD PRIMARY KEY (`idTaille`);
 
-INSERT INTO `taille` (`idTaille`, `nom`) VALUES
-(1, 'S'),
-(2, 'M'),
-(3, 'L'),
-(4, 'XL');
-
 --
 -- Index pour la table `type`
 --
 ALTER TABLE `type`
   ADD PRIMARY KEY (`idType`);
-
-INSERT INTO `type` (`idType`, `nom`) VALUES
-(1, 'T-shirt'),
-(2, 'Veste'),
-(3, 'Chaussure'),
-(4, 'Training');
 
 --
 -- Index pour la table `utilisateur`
@@ -209,11 +242,6 @@ INSERT INTO `type` (`idType`, `nom`) VALUES
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`idUtilisateur`,`idCategorie`),
   ADD KEY `fk_utilisateur_categorie1_idx` (`idCategorie`);
-
-INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password`, `email`, `rue`, `npa`, `idCategorie`, `ville`) VALUES
-(1, 'administrateur', '-', '-', 1234, '-', '-', 0, 3, '-'),
-(2, 'responsable des ventes', '-', '-', 1234, '-', '-', 0, 2, '-'),
-(3, 'user1', 'Smith', 'Johnn', 1234, 'JohnnSmith@gmail.com', 'rue du pif', 123, 1, 'Ville-random');
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -223,12 +251,12 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
@@ -238,7 +266,7 @@ ALTER TABLE `commande`
 -- AUTO_INCREMENT pour la table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `idGenre` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idGenre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `lignedecommande`
 --
@@ -248,17 +276,17 @@ ALTER TABLE `lignedecommande`
 -- AUTO_INCREMENT pour la table `taille`
 --
 ALTER TABLE `taille`
-  MODIFY `idTaille` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTaille` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `type`
 --
 ALTER TABLE `type`
-  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Contraintes pour les tables exportées
 --

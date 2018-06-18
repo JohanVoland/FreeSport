@@ -12,19 +12,19 @@ ob_start(); //$resultat
 
     <table>
         <tr>
-            <td>Nom d'utilisateur :</td>
+            <td><strong>Nom d'utilisateur :</strong></td>
             <td><?php echo $_SESSION['pseudo']; ?><br/><br/></td>
         </tr>
         <tr>
-            <td>Nom et Prenom :</td>
+            <td><strong>Nom et Prenom :</strong></td>
             <td><?php echo $_SESSION['login']; ?><br/><br/></td>
         </tr>
         <tr>
-            <td>Email :</td>
+            <td><strong>Email :</strong></td>
             <td><?php echo $_SESSION['email']; ?><br/><br/></td>
         </tr>
         <tr>
-            <td>Adresse : </td>
+            <td><strong>Adresse :</strong></td>
             <td><?php echo $_SESSION['rue']; ?><br/> <?php echo $_SESSION['adresse']; ?><br/><br/></td>
         </tr>
     </table>

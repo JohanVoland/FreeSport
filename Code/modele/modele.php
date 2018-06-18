@@ -5,6 +5,7 @@
 // Fonction : connexion avec le serveur : instancie et renvoie l'objet PDO
 // Sortie : $connexion
 
+// Connexion à la base de donnée ---------------------------------------------------------------------------------------
 function getBD()
 {
     // connexion au server de BD MySQL et à la BD
@@ -15,7 +16,7 @@ function getBD()
     return $connexion;
 }
 
-// Ajout d'un article dans la tbl articles
+// Ajout d'un article dans la tbl articles -----------------------------------------------------------------------------
 function ajouterArticleBD()
 {
     // Connexion à la BD
@@ -38,7 +39,7 @@ function ajouterArticleBD()
     $connexion->exec($requete);
 }
 
-// Afficher les articles
+// Afficher les articles -----------------------------------------------------------------------------------------------
 function articles()
 {
     // Connexion à la BD
@@ -78,39 +79,36 @@ function articles()
     return $afficherArticles;
 }
 
-// -----------------------------------------------------
-// Fonctions liées aux utilisateurs
-// -----------------------------------------------------
-// getLogin()
-// Fonction : Récupérer les données du login de la BD
-// Sortie : $resultats
-
+// Fonctions liées aux utilisateurs ------------------------------------------------------------------------------------
 function getLogin($post)
 {
     // connexion à la BD snows
     $connexion = getBD();
 
     // Définition de la requête
-    $requete = "SELECT * FROM utilisateur WHERE pseudo='".$post['pseudo']."' AND password='".$post['fPass']."';";
+    //$requete = "SELECT * FROM utilisateur WHERE pseudo='".$post['pseudo']."'AND password='".$post['fPass']."';";
+    $requete = "SELECT * FROM utilisateur WHERE pseudo = '".$post['pseudo']."';";
 
     // Exécution de la requête et renvoi des résultats
     $resultats = $connexion->query($requete);
     return $resultats;
 }
 
-// Ajouter un membre (inscription)
+// Ajouter un membre (inscription) -------------------------------------------------------------------------------------
 function ajoutMembre()
 {
     // Connexion à la BD et au serveur
     $connexion = getBD();
     extract($_POST);
-    // test si la valeur est déjà existante
+
+    // Hash le mot de passe
+    $hash = password_hash($password, PASSWORD_BCRYPT);
+
+    // Test si la valeur est déjà existante
     try
     {
-
-        $reqIns="INSERT INTO utilisateur(pseudo,nom,prenom,password,email,rue,npa,idCategorie,ville) VALUES ('".$pseudo."','".$nom."','".$prenom."','".$password."','".$email."','".$rue."','".$npa."','1','".$ville."')";
+        $reqIns="INSERT INTO utilisateur(pseudo,nom,prenom,password,email,rue,npa,idCategorie,ville) VALUES ('".$pseudo."','".$nom."','".$prenom."','".$hash."','".$email."','".$rue."','".$npa."','1','".$ville."')";
         $connexion->exec($reqIns);
-
     }
     catch (Exception $e)
     {
@@ -118,7 +116,7 @@ function ajoutMembre()
     }
 }
 
-// Supprimer un article
+// Supprimer un article ------------------------------------------------------------------------------------------------
 function supprimerArticleBD()
 {
     // Connexion à la BDD
@@ -134,7 +132,7 @@ function supprimerArticleBD()
     $connexion->query($requete);
 }
 
-// Modifier un article
+// Modifier un article -------------------------------------------------------------------------------------------------
 function modifierArticleBD()
 {
     // Connexion à la BDD
@@ -158,7 +156,7 @@ function modifierArticleBD()
     $connexion->exec($requete);
 }
 
-// Prendre tous les utilisateurs
+// Prendre tous les utilisateurs ---------------------------------------------------------------------------------------
 function afficherUsersBD()
 {
     // Connexion à la BD
@@ -174,7 +172,7 @@ function afficherUsersBD()
     return $afficherUsers;
 }
 
-// Sélectionner un seul article
+// Sélectionner un seul article ----------------------------------------------------------------------------------------
 function getArticle()
 {
     // Connexion à la BD
@@ -195,9 +193,7 @@ function getArticle()
     return $getArticle;
 }
 
-//------------------- Fonction lier au panier -------------------------
-
-//afficher le panier
+//afficher le panier ---------------------------------------------------------------------------------------------------
 function afficherPanier()
 {
     $id = $_GET['id'];
@@ -209,7 +205,7 @@ function afficherPanier()
     $_SESSION['panier'] = array(array($id), array($quantite));
 }
 
-//ajouter au panier un article
+//ajouter au panier un article -----------------------------------------------------------------------------------------
 function ajout_panier()
 {
     // connexion à la BD snows
@@ -227,7 +223,7 @@ function ajout_panier()
     return $resultats;
 }
 
-// Supprimer un article du panier
+// Supprimer un article du panier --------------------------------------------------------------------------------------
 function supp_article_panier()
 {
     // connexion à la BD snows
@@ -243,7 +239,7 @@ function supp_article_panier()
     $connexion->query($requete);
 }
 
-// Afficher le stock
+// Afficher le stock ---------------------------------------------------------------------------------------------------
 function afficherStock()
 {
     // Connexion à la BD
