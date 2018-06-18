@@ -19,22 +19,6 @@ function erreur($e)
 //login
 function login()
 {
-    /*if (isset ($_POST['pseudo']) && isset ($_POST['fPass']))
-    {
-        $resultats = getLogin($_POST);
-        require "vue/vue_login.php";
-    }
-    else
-    {
-        // détruit la session de la personne connectée après appuyé sur Logout
-        if (isset($_SESSION['login'])) {
-            session_destroy();
-            require "vue/vue_accueil.php";
-        }
-        else
-            require "vue/vue_login.php";
-    }*/
-
     // Si une session existe déjà
     if (isset($_SESSION['login']))
     {
@@ -104,8 +88,6 @@ function ajouter()
 // Après que des données est été ajoutées
 function ajout()
 {
-
-
     // Gestion de l'image
     // Définition des variables
     $image = basename($_FILES['imageArticle']['name']);
@@ -216,4 +198,21 @@ function stock()
 {
     $afficherStock = afficherStock();
     require "vue/vue_stock.php";
+}
+
+// ------------ Informations du footer ------------------------------------------
+
+function about()
+{
+    require "vue/vue_about.php";
+}
+
+function contact()
+{
+    require "vue/vue_contact.php";
+}
+
+function infoPaiement()
+{
+    require "vue/vue_infoPaiement.php";
 }

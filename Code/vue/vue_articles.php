@@ -79,13 +79,21 @@ $titre="Free Sport - Articles";
         <strong>Prix : </strong><?=$resultat['prix'];?><br/>
         <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
         <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
-        <img src="images/upload/<?=$resultat['image'];?>" width="50%", height="50%"><br/>
+        <img src="images/upload/<?=$resultat['image'];?>" width="50%" height="50%"><br/>
         <strong>Type : </strong><?=$resultat['nomType'];?><br/>
         <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
         <strong>Genre : </strong><?=$resultat['nomGenre'];?><br/>
-        <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>">modifier</a> <!-- <i class="general foundicon-edit icon"/> -->
-        <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>">supprimer</a> <!-- <i class="general foundicon-remove icon"/> -->
-        <a href="index.php?action=panier&id=<?=$resultat['idArticle']?>">ajouter au panier</a> <!-- <i class="general foundicon-plus icon"/> -->
+
+        <!-- Affichage des options pour le responsable des ventes -->
+        <?php if (@$_SESSION['typeUser'] == 'responsable' || @$_SESSION['typeUser'] == 'admin') { ?>
+            <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>"><img src="images/modif.png"></a>
+            <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>"><img src="images/delete.jpg"></a>
+        <?php } ?>
+
+        <!-- Affichage des options pour les utilisateurs -->
+        <?php if (@$_SESSION['typeUser'] == 'membre') { ?>
+            <a href="index.php?action=panier&id=<?=$resultat['idArticle']?>"><img src="images/panier.jpg"></a>
+        <?php } ?>
     </div>
 
 <?php endforeach;?>

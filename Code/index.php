@@ -59,6 +59,15 @@ try
             case 'vue_stock' :
                 stock();
                 break;
+            case 'vue_about' :
+                about();
+                break;
+            case 'vue_contact' :
+                contact();
+                break;
+            case 'vue_infoPaiement' :
+                infoPaiement();
+                break;
             default :
                 throw new Exception("action non valide");
         }
