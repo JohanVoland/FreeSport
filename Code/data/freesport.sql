@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 18 Juin 2018 à 13:02
+-- Généré le :  Jeu 21 Juin 2018 à 12:49
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -32,7 +32,7 @@ CREATE TABLE `article` (
   `prix` int(11) DEFAULT NULL,
   `disponibilite` date DEFAULT NULL,
   `nombreDispo` int(11) DEFAULT NULL,
-  `image` varchar(45) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `idType` int(11) NOT NULL,
   `idTaille` int(11) NOT NULL,
   `idGenre` int(11) NOT NULL
@@ -43,11 +43,15 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`idArticle`, `nom`, `prix`, `disponibilite`, `nombreDispo`, `image`, `idType`, `idTaille`, `idGenre`) VALUES
-(3, 'Bas Femme - DeQualitÃ©', 79, '2018-06-30', 100, 'bas-femme1.jpg', 4, 2, 2),
+(3, 'Bas Femme - DeQualitÃ©', 79, '2018-06-30', 100, 'bas-femme1.jpg', 3, 2, 2),
 (4, 'Bas Femme - AddaptÃ©sAuSport', 45, '2018-06-30', 120, 'bas2.jpg', 1, 1, 1),
 (5, 'Ensemble Femme', 120, '2018-06-30', 120, 'ensemble-femme.png', 2, 2, 2),
 (6, 'Ensemble Homme', 120, '2018-06-30', 120, 'ensemble-homme.jpg', 2, 2, 1),
-(7, 'test', 324, '2018-06-21', 4324, 'Desert.jpg', 1, 1, 1);
+(7, 'test', 324, '2018-06-21', 4324, 'Desert.jpg', 1, 1, 1),
+(9, 'Veste de marche bleue', 123, '2018-06-30', 50, 'download.jpg', 2, 2, 1),
+(10, 'Veste de sport', 50, '2018-06-27', 50, 'download.jpg', 2, 3, 1),
+(11, 'Veste Ã  capuche pour femme', 50, '2018-06-28', 50, '5465-veste-a-capuche-femme-200gm-engel-sport.jpg', 2, 1, 2),
+(12, 'Veste de marche', 50, '2018-06-28', 50, 'veste-homme-sport-luisant-noir-a-capuche-gov-denim.jpg', 3, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -152,8 +156,7 @@ CREATE TABLE `type` (
 INSERT INTO `type` (`idType`, `nom`) VALUES
 (1, 'T-shirt'),
 (2, 'Veste'),
-(3, 'Chaussure'),
-(4, 'Training');
+(3, 'Training');
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,8 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `pseudo`, `nom`, `prenom`, `password
 (6, 'administrateur', '-', '-', '$2y$10$PNfbn6BoV82eArMt1ggHZ.ICX6G2TC4qodfSuLOekxwizA79PyXIi', 'FreeSportContact@gmail.com', '-', 0, 3, '-'),
 (7, 'responsable des ventes', '-', '-', '$2y$10$O3chdTH73yv0jrFHtblXH.MJY4rloS6id/oAoaxDQnVZHsIy49huC', 'FreeSportContact@gmail.com', '-', 0, 2, '-'),
 (8, 'johan voland', 'voland', 'johan', '$2y$10$K/UxmPZOb4ko9PG2FQSscutxD55.TZL6C5CvSy7x7zXfjs8N.plyi', 'johan.voland@cpnv.ch', 'champ derrey 4', 1083, 1, 'MÃ©ziÃ¨res'),
-(9, 'UserTest', 'tzrzr', 'trzrt', '$2y$10$ioJH4UAKs7lpFxlZOfEp5evRZOcIS4BZHvGc0tQVb1VpN.XOpUgGe', 'User.Test@cpnv.ch', 'champ derrey 4', 435, 1, 'ste. croix');
+(9, 'UserTest', 'tzrzr', 'trzrt', '$2y$10$ioJH4UAKs7lpFxlZOfEp5evRZOcIS4BZHvGc0tQVb1VpN.XOpUgGe', 'User.Test@cpnv.ch', 'champ derrey 4', 435, 1, 'ste. croix'),
+(10, 'JohnSmith', 'Smith', 'John', '$2y$10$BxAXfodfJ29HKP6PV0HwKOgdlU/u1XW1oViXMjh70YfsZMlX8lvvm', 'johnSMITH@cpnv.ch', 'Rue centrale 4', 1234, 1, 'Village');
 
 --
 -- Index pour les tables exportées
@@ -251,7 +255,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `categorie`
 --
@@ -286,7 +290,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Contraintes pour les tables exportées
 --

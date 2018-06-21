@@ -54,7 +54,7 @@ $titre="Free Sport - Ajouter un article";
                     <select name="type">
                         <option value="1">T-shirt</option>
                         <option value="2">Veste</option>
-                        <option value="4">Training</option>
+                        <option value="3">Training</option>
                     </select>
                 </td>
 
