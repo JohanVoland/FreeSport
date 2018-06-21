@@ -9,7 +9,7 @@
 function getBD()
 {
     // connexion au server de BD MySQL et à la BD
-    $connexion = new PDO('mysql:host=localhost; dbname=freesport', 'root', '');
+    $connexion = new PDO('mysql:host=localhost; dbname=freesport_BD', 'freesport_BD', 'Pa$$w0rd');
 
     // permet d'avoir plus de détails sur les erreurs retournées
     $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
