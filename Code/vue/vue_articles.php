@@ -12,9 +12,9 @@ $titre="Free Sport - Articles";
 ?>
 
     <!-- Contenu -->
-<h2>Nos articles</h2>
+    <h2>Nos articles</h2>
 
-    <!-- Filtre -->
+    <!-- Filtre NON FONCTIONNEL -->
     <!--<form class="form" method="post" action="index.php?action=vue_articles">
         <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
             <a onclick="myAccFunc1()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn1">
@@ -59,7 +59,6 @@ $titre="Free Sport - Articles";
         <strong>Nom : </strong><?=$resultat['nom'];?><br/>
         <strong>Prix : </strong><?=$resultat['prix'];?><br/>
         <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
-        <strong>Nombre disponibles : </strong><?=$resultat['nombreDispo'];?><br/>
         <img src="images/upload/<?=$resultat['image'];?>" width="50%" height="50%"><br/>
         <strong>Type : </strong><?=$resultat['nomType'];?><br/>
         <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>

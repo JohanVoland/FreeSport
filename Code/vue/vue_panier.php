@@ -19,14 +19,14 @@ if (isset($_SESSION["list"]))
 if (isset($_SESSION["list"])) { ?>
     <table class="table textcolor">
         <tr>
-            <th>IDArticle</th>
-            <th>Nom</th>
-            <th>Prix (CHF)</th>
-            <th>Disponibilité</th>
-            <th>Nombre Dispo</th>
-            <th>nomType</th>
-            <th>nomTaille</th>
-            <th>nomGenre</th>
+            <td>IDArticle</td>
+            <td>Nom</td>
+            <td>Prix (CHF)</td>
+            <td>Disponibilité</td>
+            <td>Nombre Dispo</td>
+            <td>nomType</td>
+            <td>nomTaille</td>
+            <td>nomGenre</td>
         </tr>
 
         <?php
@@ -36,11 +36,11 @@ if (isset($_SESSION["list"])) { ?>
         foreach ($_SESSION["list"] as $value){
             //for ($i=1; $i<$nbLigne; $i++) //ligne
             //{
-            echo "<tr>";
+            /*echo "<tr>";
             //for ($j=1; $j<9; $j++){ //colonne
             echo "<td>".$value."</td>";
             //}
-            echo "</tr>";
+            echo "</tr>";*/
 
             //}
             print_r($value);

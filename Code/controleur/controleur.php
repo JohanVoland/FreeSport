@@ -98,7 +98,7 @@ function panier()
         }
     }
 
-    require 'vue/vue_articles.php';
+    require 'vue/vue_panier.php';
 }
 
 // ----------------- Ajout d'articles --------------------------------------------
@@ -145,6 +145,7 @@ function ajout()
     }
     else
     {
+        // S'il y a une erreur
         $erreur;
     }
 
