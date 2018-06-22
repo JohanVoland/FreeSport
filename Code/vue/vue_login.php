@@ -20,21 +20,11 @@ ob_start();
                 if ($ligne['idCategorie'] == 3) {
                     echo "Bonjour. Vous êtes connecté en tant qu'administrateur.";
                     // Création de la session
-                    //$_SESSION['login']=$ligne['pseudo'];
-                    $_SESSION['login'] = $ligne['prenom'] . " " . $ligne['nom'];
-                    $_SESSION['pseudo'] = $ligne['pseudo'];
-                    $_SESSION['email'] = $ligne['email'];
-                    $_SESSION['rue'] = $ligne['rue'];
-                    $_SESSION['adresse'] = $ligne['npa'] . " " . $ligne['ville'];
+                    $_SESSION['login']=$ligne['pseudo'];
                     $_SESSION['typeUser'] = "admin";
                 } else if ($ligne['idCategorie'] == 2) {
                     echo "Bonjour. Vous êtes connecté en tant que responsable des ventes.";
-                    //$_SESSION['login']=$ligne['pseudo'];
-                    $_SESSION['login'] = $ligne['prenom'] . " " . $ligne['nom'];
-                    $_SESSION['pseudo'] = $ligne['pseudo'];
-                    $_SESSION['email'] = $ligne['email'];
-                    $_SESSION['rue'] = $ligne['rue'];
-                    $_SESSION['adresse'] = $ligne['npa'] . " " . $ligne['ville'];
+                    $_SESSION['login']=$ligne['pseudo'];
                     $_SESSION['typeUser'] = "responsable";
                 } else if ($ligne['idCategorie'] == 1) {
                     echo "Bonjour " . $ligne['prenom'] . " " . $ligne['nom'] . ". Vous êtes bien connecté en tant que " . $ligne['pseudo'] . " ";

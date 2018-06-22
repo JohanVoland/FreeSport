@@ -74,22 +74,31 @@ function profil()
 
 function panier()
 {
-    $afficherPanier = afficherPanier();
-    //$afficherPanier = afficherPanier();
-    $id = $_GET['id'];
-    $quantite= 1;
+    //stocker les ajouts dans la session
+    if (isset($_GET['id']))
+    {
+        if (!isset($_SESSION["list"]))
+        {
+            $_SESSION["list"] = array();
+        }
 
-    $idArticle = array($id);
-    $nbr = array($quantite);
+        $getArticle = getArticle();
 
-    $_SESSION['panier'] = array_multisort($idArticle, $nbr);
+        foreach ($getArticle as $resultat){
+            $id = $resultat['idArticle'];
+            $nom = $resultat['nom'];
+            $prix = $resultat['prix'];
+            $disponibilite = $resultat['disponibilite'];
+            $nomnombreDispo = $resultat['nombreDispo'];
+            $nomType = $resultat['nomType'];
+            $nomTaille = $resultat['nomTaille'];
+            $nomGenre = $resultat['nomGenre'];
 
-    require 'vue/vue_panier.php';
+            array_push($_SESSION["list"], $id, $nom, $prix, $disponibilite, $nomnombreDispo, $nomType, $nomTaille, $nomGenre);
+        }
+    }
 
-
-    ajout_panier();
-
-    require "vue/vue_accueil.php";
+    require 'vue/vue_articles.php';
 }
 
 // ----------------- Ajout d'articles --------------------------------------------

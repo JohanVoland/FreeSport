@@ -22,6 +22,12 @@
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="assets/js/jquery.min.js" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/jquery-1.11.3.min.js">
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
 
     <body class="w3-content">
@@ -35,7 +41,7 @@
         <br/>
         <ul class="nav">
             <?php if (isset($_SESSION['login'])) :?>
-                <li><a href="index.php?action=profil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['pseudo']; ?></a></li>
+                <li><a href="index.php?action=profil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['login']; ?></a></li>
                 <?php if ($_SESSION['typeUser'] == "membre") : ?>
                     <li><a href="index.php?action=panier"><img src="images/panier.jpg"></a></li>
                 <?php endif; ?>
