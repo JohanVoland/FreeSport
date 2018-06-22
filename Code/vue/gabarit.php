@@ -43,7 +43,7 @@
             <?php if (isset($_SESSION['login'])) :?>
                 <li><a href="index.php?action=profil" class="w3-bar-item w3-button w3-padding">Bonjour <?php echo $_SESSION['login']; ?></a></li>
                 <?php if ($_SESSION['typeUser'] == "membre") : ?>
-                    <li><a href="index.php?action=panier"><img src="images/panier.jpg"></a></li>
+                    <li><a href="index.php?action=panier" style="color: black"><img src="images/panier.jpg"> Votre panier</a></li>
                 <?php endif; ?>
             <?php else : ?>
                 <li><a href="index.php?action=accueil" class="w3-bar-item w3-button w3-padding">Bonjour visiteur</a></li>

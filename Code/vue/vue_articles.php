@@ -10,6 +10,11 @@
 ob_start();
 $titre="Free Sport - Articles";
 ?>
+<style>
+    .flotte {
+        float:left;
+    }
+</style>
 
     <!-- Contenu -->
     <h2>Nos articles</h2>
@@ -56,24 +61,26 @@ $titre="Free Sport - Articles";
 <?php foreach ($afficherArticles as $resultat) :?>
 
     <div class="form" id = "afficherArticles" style="border: 1px solid black; border-radius: 5px; padding: 15px; border-collapse: separate; margin: 5px">
-        <strong>Nom : </strong><?=$resultat['nom'];?><br/>
-        <strong>Prix : </strong><?=$resultat['prix'];?><br/>
-        <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
-        <img src="images/upload/<?=$resultat['image'];?>" width="50%" height="50%"><br/>
-        <strong>Type : </strong><?=$resultat['nomType'];?><br/>
-        <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
-        <strong>Genre : </strong><?=$resultat['nomGenre'];?><br/>
+        <img src="images/upload/<?=$resultat['image'];?>" class="flotte" width="50%" height="50%">
+        <p style="line-height:50px; margin-left: 52%;">
+            <strong>Nom : </strong><?=$resultat['nom'];?><br/>
+            <strong>Prix : </strong><?=$resultat['prix'];?> CHF<br/>
+            <strong>Date de disponibilité : </strong><?=$resultat['disponibilite'];?><br/>
+            <strong>Type : </strong><?=$resultat['nomType'];?><br/>
+            <strong>Taille : </strong><?=$resultat['nomTaille'];?><br/>
+            <strong>Genre : </strong><?=$resultat['nomGenre'];?><br/>
 
-        <!-- Affichage des options pour le responsable des ventes -->
-        <?php if (@$_SESSION['typeUser'] == 'responsable' || @$_SESSION['typeUser'] == 'admin') { ?>
-            <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>"><img src="images/modif.png"></a>
-            <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>"><img src="images/delete.jpg"></a>
-        <?php } ?>
+            <!-- Affichage des options pour le responsable des ventes -->
+            <?php if (@$_SESSION['typeUser'] == 'responsable' || @$_SESSION['typeUser'] == 'admin') { ?>
+                <a href="index.php?action=vue_modifier_article&id=<?=$resultat['idArticle']?>"><img src="images/modif.png"></a>
+                <a href="index.php?action=vue_supprimer_article_confirmer&id=<?=$resultat['idArticle']?>"><img src="images/delete.jpg"></a>
+            <?php } ?>
 
-        <!-- Affichage des options pour les utilisateurs -->
-        <?php if (@$_SESSION['typeUser'] == 'membre') { ?>
-            <a href="index.php?action=panier&id=<?=$resultat['idArticle']?>"><img src="images/panier.jpg"></a>
-        <?php } ?>
+            <!-- Affichage des options pour les utilisateurs -->
+            <?php if (@$_SESSION['typeUser'] == 'membre') { ?>
+                <a href="index.php?action=panier&id=<?=$resultat['idArticle']?>" style="color: black"><img src="images/panier.jpg"> Ajouter au panier</a>
+            <?php } ?>
+        </p>
     </div>
 
 <?php endforeach;?>
