@@ -24,13 +24,13 @@ if (isset($_SESSION["list"])) { ?>
             <td>Prix (CHF)</td>
             <td>Disponibilité</td>
             <td>Nombre Dispo</td>
-            <td>nomType</td>
-            <td>nomTaille</td>
-            <td>nomGenre</td>
+            <td>Type</td>
+            <td>Taille</td>
+            <td>Genre</td>
         </tr>
 
         <?php
-        echo $panier_count;
+        //echo $panier_count;
         $nbLigne = $panier_count / 8;
 
         foreach ($_SESSION["list"] as $value){
@@ -43,7 +43,8 @@ if (isset($_SESSION["list"])) { ?>
             echo "</tr>";*/
 
             //}
-            print_r($value);
+            echo "<td>",print_r($value);
+            echo "</td>";
         }
         ?>
     </table>

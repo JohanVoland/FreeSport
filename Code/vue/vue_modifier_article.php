@@ -13,7 +13,7 @@ $titre="Free Sport - Modifier un article";
     <!-- Contenu -->
 <?php foreach ($getArticle as $resultat) :?>
     <h2>Modifier un article</h2>
-    <form class="form" method="POST" action="index.php?action=vue_modifier_article">
+    <form class="form" method="POST" action="index.php?action=vue_modifier_article" enctype="multipart/form-data">
         <table class="table">
             <tr>
                 <td>ID :</td>
@@ -63,7 +63,7 @@ $titre="Free Sport - Modifier un article";
                 </td>
 
                 <td>Images :</td>
-                <td><input type="text" name="imageArticle" readonly value="<?=$resultat['image']?>"></td>
+                <td><input type="file" name="imageArticleModifier" required></td>
             </tr>
             <tr>
                 <td><input class="btn" type="submit" value="modifier"/></td>

@@ -137,8 +137,12 @@ function ajout()
             'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
             'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
         $image = preg_replace('/([^.a-z0-9]+)/i', '-', $image);
-        move_uploaded_file($_FILES['imageArticle']['tmp_name'], $target . $image);
-        $_POST['imageArticle'] = $image;
+
+        // Renommer le fichier
+        $imageFinale ='' .time(). '' .$image;
+
+        move_uploaded_file($_FILES['imageArticle']['tmp_name'], $target . $imageFinale);
+        $_POST['imageArticle'] = $imageFinale;
 
         // Ajout de l'article
         ajouterArticleBD();
@@ -198,10 +202,48 @@ function modifierArticle()
     }
     else
     {
-        // Modifie l'article
-        modifierArticleBD();
+        // Gestion de l'image
+        // Définition des variables
+        $image = basename($_FILES['imageArticleModifier']['name']);
+        $target = "images/upload/";
+        $taille_max = 10000000;
+        $tailleImage = filesize($_FILES['imageArticleModifier']['tmp_name']);
+        $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+        $extension = strrchr($_FILES['imageArticleModifier']['name'], '.');
 
-        // Renvoi vers la page d'accueil
+        // Début de vérifications de sécurité
+        if (!in_array($extension, $extensions)) // Si c'est une mauvaise extension
+        {
+            $erreur = 'Vous devez uploader un fichier de type png, jpg, gif ou jpeg.';
+        }
+        if ($tailleImage>$taille_max) // Si la taille est trop grande
+        {
+            $erreur = 'L\'image est trop grosse.';
+        }
+        if (!isset($erreur)) // S'il n'y a pas d'erreur on l'upload
+        {
+            // On formate le nom du fichier ici
+            $image = strtr($image,
+                'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+                'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+            $image = preg_replace('/([^.a-z0-9]+)/i', '-', $image);
+
+            // Renommer le fichier
+            $imageFinale ='' .time(). '' .$image;
+
+            move_uploaded_file($_FILES['imageArticleModifier']['tmp_name'], $target . $imageFinale);
+            $_POST['imageArticle'] = $imageFinale;
+
+            // Modifie l'article
+            modifierArticleBD();
+        }
+        else
+        {
+            // S'il y a une erreur
+            $erreur;
+        }
+
+        // Renvoi vers la page des articles
         afficherArticles();
     }
 }
